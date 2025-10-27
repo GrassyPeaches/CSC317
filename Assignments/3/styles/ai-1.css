@@ -1,0 +1,247 @@
+/* -------------------------
+   UX Tweak + Stylings
+   - photo inserted into About (decorative, desktop only)
+   - wider About on desktop
+   - distinct skill pills with stronger gradient + shadows
+   - cute custom list markers
+   - playful font stack (Poppins/Quicksand -> Inter fallback)
+   ------------------------- */
+
+/* ---------- Typography (fun) ---------- */
+:root {
+  --fun-font: "Poppins", "Quicksand", "Inter", "Segoe UI", Roboto, Arial,
+    sans-serif;
+  --serif: "Merriweather", Georgia, serif;
+  --accent: #ff6f71;
+  --accent-2: #ff8aa6;
+  --peach-100: #fff3f1;
+  --peach-200: #ffd6cc;
+  --muted: #746060;
+  --card: #fff7f6;
+  --glass: rgba(255, 255, 255, 0.78);
+  --shadow-lg: 0 28px 64px rgba(60, 30, 30, 0.1);
+  --radius-md: 14px;
+}
+
+/* apply playful fonts */
+body,
+header,
+section {
+  font-family: var(--fun-font);
+  color: #362a2a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keep responsive safety */
+* {
+  box-sizing: border-box;
+  min-width: 0;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- About tuning ---------- */
+section#About {
+  background: var(--card);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  box-shadow: 0 10px 28px rgba(80, 40, 40, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Make headings friendly but clear */
+section#About h2 {
+  font-family: var(--serif);
+  font-weight: 700;
+  margin: 0 0 0.6rem 0;
+  font-size: 1.05rem;
+  color: #402a2a;
+}
+
+/* Paragraph spacing */
+section#About p {
+  margin: 0 0 0.8rem 0;
+  line-height: 1.6;
+  color: #473737;
+  font-size: 1rem;
+}
+
+/* ---------- Insert decorative copy of the profile photo into About (desktop only) ----------
+   Strategy:
+   - On desktop, hide the standalone profile-photo section so we don't duplicate visually.
+   - Insert an image between the first and second paragraphs using ::after on the first paragraph:
+     content: url('...'), then style it as a responsive, framed card.
+   - We intentionally keep the original image in the DOM for accessibility and mobile (where we show it).
+   NOTE: Replace the URL in the content() if your image path is different.
+------------------------------------------------------------------------- */
+@media (min-width: 900px) {
+  /* hide original profile photo section on large screens (we show decorative copy in About) */
+  section[id="Profile Photo"] {
+    display: none !important;
+  }
+
+  /* Ensure About has room and looks wide & balanced */
+  section#About {
+    max-width: 880px; /* make it a wider card on desktop */
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Insert the image after the first paragraph as a decorative block */
+  section#About p:first-of-type::after {
+    content: url("Images/gracielaramirez-8643_54516241257_o.jpg");
+    display: block;
+    width: 360px; /* desired displayed width */
+    max-width: 80%;
+    margin: 1rem auto; /* center within About card */
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 140, 130, 0.06);
+    transform: translateY(0);
+  }
+
+  /* small uplift hover for pseudo-image (works visually like a card) */
+  section#About p:first-of-type::after:hover {
+    transform: translateY(-6px);
+  }
+
+  /* Keep second paragraph spaced properly below the inserted image */
+  section#About p + p {
+    margin-top: 0.9rem;
+  }
+}
+
+/* On smaller screens keep original profile section visible and remove pseudo-image */
+@media (max-width: 899px) {
+  section[id="Profile Photo"] {
+    display: block !important;
+  } /* ensure it's visible on mobile */
+  section#About p:first-of-type::after {
+    content: none;
+  } /* no pseudo image on small screens */
+}
+
+/* ---------- Skills: more distinct shades & shadows ---------- */
+section#Skills {
+  padding: 0.9rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 26px rgba(80, 40, 40, 0.05);
+  background: linear-gradient(180deg, #fff, var(--card));
+}
+
+/* skills list as pills */
+#Skills ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* stronger, layered look for pills */
+#Skills li {
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--peach-100), var(--peach-200));
+  border: 1px solid rgba(255, 120, 110, 0.09);
+  box-shadow: 0 10px 18px rgba(255, 120, 110, 0.06),
+    inset 0 -3px 0 rgba(255, 255, 255, 0.35);
+  color: #5a2d2d;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+  cursor: default;
+}
+#Skills li:hover,
+#Skills li:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(255, 120, 110, 0.12);
+  background: linear-gradient(180deg, #ffd9d3, #ffbdb3);
+  outline: none;
+}
+#Skills li:focus-visible {
+  outline: 3px solid rgba(255, 110, 100, 0.14);
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+/* make pills slightly larger on desktop */
+@media (min-width: 900px) {
+  #Skills li {
+    padding: 0.56rem 0.95rem;
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Replace bullet points with cutesy marker for any ul with .cute (or generically) ----------
+   We'll add a small decorative symbol (❀) as the marker.
+   Use .cute on lists you want this for, or apply to all project sublists below.
+------------------------------------------------------------------------ */
+.cute,
+section#Projects li > ul,
+#Skills ul {
+  list-style: none;
+  padding-left: 0;
+}
+.cute li,
+section#Projects li > ul li {
+  position: relative;
+  padding-left: 1.3rem;
+  margin-bottom: 0.35rem;
+}
+.cute li::before,
+section#Projects li > ul li::before {
+  content: "❀";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-size: 1rem;
+  line-height: 1;
+  transform: translateY(0.08rem);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* If you want a colorful strawberry emoji marker instead:
+.cute li::before { content: "🍓"; font-size:1.05rem; }
+*/
+
+/* ---------- Make sure contact and other links remain usable & not rotated ---------- */
+section#Contact a {
+  text-decoration: none;
+  font-weight: 800;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff, var(--peach-100));
+  border: 1px solid rgba(255, 140, 130, 0.06);
+  color: #532b2b;
+}
+section#Contact a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(90, 35, 35, 0.08);
+}
+
+/* ---------- Accessibility & small helpers ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* small utility */
+.kicker {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  background: rgba(255, 200, 195, 0.22);
+  font-weight: 700;
+  color: #6b3737;
+  font-size: 0.82rem;
+}
