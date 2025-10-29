@@ -1,247 +1,352 @@
-/* -------------------------
-   UX Tweak + Stylings
-   - photo inserted into About (decorative, desktop only)
-   - wider About on desktop
-   - distinct skill pills with stronger gradient + shadows
-   - cute custom list markers
-   - playful font stack (Poppins/Quicksand -> Inter fallback)
-   ------------------------- */
+/* ========== Modern Card-Based Portfolio (styles.css) ========== */
 
-/* ---------- Typography (fun) ---------- */
+/* -------- CSS Variables (Theme) -------- */
 :root {
-  --fun-font: "Poppins", "Quicksand", "Inter", "Segoe UI", Roboto, Arial,
-    sans-serif;
-  --serif: "Merriweather", Georgia, serif;
-  --accent: #ff6f71;
-  --accent-2: #ff8aa6;
-  --peach-100: #fff3f1;
-  --peach-200: #ffd6cc;
-  --muted: #746060;
-  --card: #fff7f6;
-  --glass: rgba(255, 255, 255, 0.78);
-  --shadow-lg: 0 28px 64px rgba(60, 30, 30, 0.1);
+  --bg: #0b1020;
+  --bg-accent: radial-gradient(1200px 600px at 10% -10%, rgba(99,102,241,.25), transparent 60%),
+               radial-gradient(1200px 800px at 110% 10%, rgba(16,185,129,.18), transparent 60%);
+  --surface: #12172a;
+  --surface-2: #171c32;
+  --border: rgba(255,255,255,0.08);
+
+  --text: #e6e8ee;
+  --muted: #aab1c5;
+  --heading: #ffffff;
+
+  --accent: #8b5cf6;
+  --accent-2: #22d3ee;
+  --accent-3: #10b981;
+
+  --radius-lg: 18px;
   --radius-md: 14px;
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.35);
+  --shadow-sm: 0 6px 16px rgba(0,0,0,0.3);
+
+  --card-padding: clamp(16px, 2.5vw, 28px);
+  --container: min(1100px, 92vw);
+  --gap: clamp(14px, 2.2vw, 22px);
 }
 
-/* apply playful fonts */
-body,
-header,
-section {
-  font-family: var(--fun-font);
-  color: #362a2a;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* -------- Base / Reset -------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-/* Keep responsive safety */
-* {
-  box-sizing: border-box;
-  min-width: 0;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ---------- About tuning ---------- */
-section#About {
-  background: var(--card);
-  border-radius: var(--radius-md);
-  padding: 1rem;
-  box-shadow: 0 10px 28px rgba(80, 40, 40, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-/* Make headings friendly but clear */
-section#About h2 {
-  font-family: var(--serif);
-  font-weight: 700;
-  margin: 0 0 0.6rem 0;
-  font-size: 1.05rem;
-  color: #402a2a;
-}
-
-/* Paragraph spacing */
-section#About p {
-  margin: 0 0 0.8rem 0;
+html, body {
+  padding: 0; margin: 0;
+  background: var(--bg); color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
   line-height: 1.6;
-  color: #473737;
-  font-size: 1rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Insert decorative copy of the profile photo into About (desktop only) ----------
-   Strategy:
-   - On desktop, hide the standalone profile-photo section so we don't duplicate visually.
-   - Insert an image between the first and second paragraphs using ::after on the first paragraph:
-     content: url('...'), then style it as a responsive, framed card.
-   - We intentionally keep the original image in the DOM for accessibility and mobile (where we show it).
-   NOTE: Replace the URL in the content() if your image path is different.
-------------------------------------------------------------------------- */
-@media (min-width: 900px) {
-  /* hide original profile photo section on large screens (we show decorative copy in About) */
-  section[id="Profile Photo"] {
-    display: none !important;
-  }
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-  /* Ensure About has room and looks wide & balanced */
-  section#About {
-    max-width: 880px; /* make it a wider card on desktop */
-    margin: 0 auto;
-    position: relative;
-  }
+img { max-width: 100%; height: auto; display: block; }
 
-  /* Insert the image after the first paragraph as a decorative block */
-  section#About p:first-of-type::after {
-    content: url("Images/gracielaramirez-8643_54516241257_o.jpg");
-    display: block;
-    width: 360px; /* desired displayed width */
-    max-width: 80%;
-    margin: 1rem auto; /* center within About card */
-    border-radius: 12px;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid rgba(255, 140, 130, 0.06);
-    transform: translateY(0);
-  }
-
-  /* small uplift hover for pseudo-image (works visually like a card) */
-  section#About p:first-of-type::after:hover {
-    transform: translateY(-6px);
-  }
-
-  /* Keep second paragraph spaced properly below the inserted image */
-  section#About p + p {
-    margin-top: 0.9rem;
-  }
+/* -------- Page Layout -------- */
+header {
+  padding: 20px 0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)),
+    var(--bg-accent);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
 }
 
-/* On smaller screens keep original profile section visible and remove pseudo-image */
-@media (max-width: 899px) {
-  section[id="Profile Photo"] {
-    display: block !important;
-  } /* ensure it's visible on mobile */
-  section#About p:first-of-type::after {
-    content: none;
-  } /* no pseudo image on small screens */
+header h1 {
+  width: var(--container);
+  margin: 0 auto 4px;
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--heading);
+  font-weight: 600;
 }
 
-/* ---------- Skills: more distinct shades & shadows ---------- */
-section#Skills {
-  padding: 0.9rem;
-  border-radius: var(--radius-md);
-  box-shadow: 0 10px 26px rgba(80, 40, 40, 0.05);
-  background: linear-gradient(180deg, #fff, var(--card));
+header p {
+  width: var(--container);
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: clamp(12px, 1.8vw, 16px);
 }
 
-/* skills list as pills */
-#Skills ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+/* spacing after header */
+main {
+  width: var(--container);
+  margin: 50px auto 64px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
 }
 
-/* stronger, layered look for pills */
-#Skills li {
-  font-weight: 800;
-  font-size: 0.95rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--peach-100), var(--peach-200));
-  border: 1px solid rgba(255, 120, 110, 0.09);
-  box-shadow: 0 10px 18px rgba(255, 120, 110, 0.06),
-    inset 0 -3px 0 rgba(255, 255, 255, 0.35);
-  color: #5a2d2d;
-  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
-  cursor: default;
-}
-#Skills li:hover,
-#Skills li:focus {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(255, 120, 110, 0.12);
-  background: linear-gradient(180deg, #ffd9d3, #ffbdb3);
-  outline: none;
-}
-#Skills li:focus-visible {
-  outline: 3px solid rgba(255, 110, 100, 0.14);
-  outline-offset: 4px;
-  border-radius: 999px;
-}
-
-/* make pills slightly larger on desktop */
-@media (min-width: 900px) {
-  #Skills li {
-    padding: 0.56rem 0.95rem;
-    font-size: 1rem;
-  }
-}
-
-/* ---------- Replace bullet points with cutesy marker for any ul with .cute (or generically) ----------
-   We'll add a small decorative symbol (❀) as the marker.
-   Use .cute on lists you want this for, or apply to all project sublists below.
------------------------------------------------------------------------- */
-.cute,
-section#Projects li > ul,
-#Skills ul {
-  list-style: none;
-  padding-left: 0;
-}
-.cute li,
-section#Projects li > ul li {
+/* Card style for all sections */
+main > section {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-md);
   position: relative;
-  padding-left: 1.3rem;
-  margin-bottom: 0.35rem;
-}
-.cute li::before,
-section#Projects li > ul li::before {
-  content: "❀";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--accent);
-  font-size: 1rem;
-  line-height: 1;
-  transform: translateY(0.08rem);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  overflow: hidden;
 }
 
-/* If you want a colorful strawberry emoji marker instead:
-.cute li::before { content: "🍓"; font-size:1.05rem; }
-*/
+main h2 {
+  margin-top: 0;
+  font-size: clamp(20px, 2.6vw, 28px);
+  color: var(--heading);
+}
 
-/* ---------- Make sure contact and other links remain usable & not rotated ---------- */
-section#Contact a {
-  text-decoration: none;
-  font-weight: 800;
-  padding: 0.5rem 0.8rem;
+main h3 {
+  margin: 10px 0 8px;
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: #dfe3f3;
+}
+
+ul { padding-left: 18px; }
+
+/* -------- Theme Switcher -------- */
+.theme-switcher {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.theme-button {
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color: var(--text);
+  padding: 10px 14px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #fff, var(--peach-100));
-  border: 1px solid rgba(255, 140, 130, 0.06);
-  color: #532b2b;
-}
-section#Contact a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(90, 35, 35, 0.08);
+  cursor: pointer;
+  transition: all .2s ease;
 }
 
-/* ---------- Accessibility & small helpers ---------- */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
+.theme-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.theme-button.active {
+  border-color: rgba(139,92,246,.8);
+  box-shadow: 0 10px 26px rgba(139,92,246,.35);
+}
+
+/* -------- Profile Card -------- */
+#Profile-Photo {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+  gap: clamp(14px, 2.5vw, 26px);
+}
+
+#Profile-Photo img {
+  width: clamp(120px, 18vw, 160px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.12);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.45),
+              inset 0 0 0 4px rgba(34,211,238,0.12);
+}
+
+#Profile-Photo .Name {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 30px);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2) 50%, var(--accent-3));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* -------- About Card -------- */
+#About p {
+  color: var(--text);
+  opacity: .92;
+  margin: 10px 0 0;
+}
+
+/* -------- Skills Section -------- */
+#Skills {
+  display: grid;
+  column-gap: var(--gap);
+  row-gap: 0;
+}
+
+#Skills > h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 12px;
+}
+
+#Skills h3 {
+  margin: 0;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-top-left-radius: var(--radius-md);
+  border-top-right-radius: var(--radius-md);
+  color: #dfe3f3;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+#Skills h3 + ul {
+  list-style: disc;
+  margin: 0 0 var(--gap) 0;
+  padding: 14px 22px 18px 34px;
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-top: none;
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  min-height: 180px;
+}
+
+#Skills h3 + ul li {
+  margin: 4px 0;
+  font-size: 15px;
+}
+
+@media (min-width: 820px) {
+  #Skills {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row dense;
+    align-items: stretch;
+  }
+
+  #Skills h3:nth-of-type(1),
+  #Skills h3:nth-of-type(1) + ul {
+    grid-column: 1;
+  }
+
+  #Skills h3:nth-of-type(2),
+  #Skills h3:nth-of-type(2) + ul {
+    grid-column: 2;
   }
 }
 
-/* small utility */
-.kicker {
+/* -------- Projects Section -------- */
+#Projects {
+  padding: var(--card-padding);
+}
+
+#Projects > h2 {
+  margin-bottom: var(--gap);
+}
+
+#Projects .project {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 26px;
+  box-shadow: var(--shadow-sm);
+  transition: all .25s ease;
+}
+
+#Projects .project:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34,211,238,0.18);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.35);
+}
+
+/* ✅ better spacing between elements inside each project card */
+#Projects .project h3 {
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+#Projects .project p {
+  margin: 10px 0 16px;
+  line-height: 1.6;
+}
+
+/* Add small spacing before "Tech Stack" and "Outcome" paragraphs */
+#Projects .project p strong {
   display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 8px;
-  background: rgba(255, 200, 195, 0.22);
-  font-weight: 700;
-  color: #6b3737;
-  font-size: 0.82rem;
+  margin-top: 6px;
+  color: white;
+  font-weight: 600;
+}
+
+/* Responsive grid for projects */
+@media (min-width: 600px) {
+  #Projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--gap);
+    align-items: stretch;
+  }
+
+  #Projects > h2 {
+    grid-column: 1 / -1;
+  }
+}
+
+/* -------- Contact Card -------- */
+#Contact ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-left: 0;
+  margin: 10px 0 0;
+}
+
+#Contact li { list-style: none; }
+
+#Contact a {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  color: var(--text);
+  transition: all .2s ease;
+}
+
+#Contact a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(16,185,129,.4);
+  box-shadow: 0 10px 24px rgba(16,185,129,.25);
+}
+
+/* -------- Decorative Details -------- */
+section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 200px at 10% 0%, rgba(139,92,246,0.10), transparent 50%),
+    radial-gradient(500px 180px at 100% 0%, rgba(34,211,238,0.10), transparent 50%);
+  opacity: .7;
+}
+
+/* -------- Responsive Tweaks -------- */
+@media (max-width: 640px) {
+  #Profile-Photo {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  #Profile-Photo img {
+    margin: 0 auto;
+  }
+}
+
+/* Print-friendly */
+@media print {
+  body { background: #fff; color: #111; }
+  header, section, .theme-switcher {
+    box-shadow: none !important;
+    background: #fff !important;
+    border-color: #ddd;
+  }
+  a { color: #0645ad; text-decoration: underline; }
 }
