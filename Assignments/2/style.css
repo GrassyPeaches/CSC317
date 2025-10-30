@@ -1,0 +1,32 @@
+/*
+********TEXT COLORS*******
+#868e96
+
+********TEXT FONTS********
+
+
+********TEXT SIZES********
+
+
+
+********COLORS********
+fff5f5
+
+
+*/
+
+head {
+  color: #868e96;
+}
+
+body {
+  color: #868e96;
+}
+
+html {
+  background-color: fff5f5;
+}
+
+.image {
+  border-radius: 50%;
+}
