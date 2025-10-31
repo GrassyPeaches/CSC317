@@ -3,7 +3,7 @@
 **Group Members:**
 - [Student Name 1] - [Student ID] - [GitHub Username]
 - [Graciela Ramirez] - [925009719] - [GrassyPeaches]
-- [Student Name 3] - [Student ID] - [GitHub Username]
+- [Sydney Leake] - [922864992] - [sydneyl04]
 - [Student Name 4] - [Student ID] - [GitHub Username] 
 
 **Elected Submitter:** [Graciela Ramirez, GrassyPeaches]
@@ -22,7 +22,7 @@
 ### [Graciela Ramirez] - Hand-written CSS (Part 2)
 At first, I struggled with getting layouts to align properly and remembering how different properties like flexbox, margins, and padding interact. At time I was mixing up units, which then encouraged me to write some notes to structure the whole page and base it off of. Over time, I became more comfortable experimenting with colors, spacing, and responsive design, I actually learned that debugging styles can be just as much of a headache as resolving programming errors. However, I did thoroughly enjoy researching and practicing all the handy tools involved as well as experimenting with design. Overall creating CSS from scratch gave me a stronger sense of how structure, design, and the syntax all come together to build countless designs.
 
-### [Member 3 Name] - AI Text Prompt CSS
+### [Sydney Leake] - AI Text Prompt CSS
 [Individual reflection on AI prompting experience and lessons learned]
 
 ### [Graciela Ramirez] - AI Image+Text Prompt CSS (if applicable)

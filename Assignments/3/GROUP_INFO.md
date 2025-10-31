@@ -4,7 +4,7 @@
 
 - [Syed Shah] - [924729660] - [haider2shah] - **Hand-written CSS (Part 1)**
 - [Graciela Ramirez] - [925009719] - [GrassyPeaches] - **Hand-written CSS (Part 2)**
-- [Sydney] - [Student ID] - [GitHub Username] - **AI Text Prompt CSS**
+- [Sydney Leake] - [922864992] - [sydneyl04] - **AI-3 Text Prompt CSS**
 - [Shreya] - [Student ID] - [GitHub Username] - **AI Image+Text Prompt CSS** (if applicable)
 
 **Elected Submitter:** [Graciela, GrassyPeaches]
