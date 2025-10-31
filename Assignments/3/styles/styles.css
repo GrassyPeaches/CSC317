@@ -61,6 +61,9 @@ header {
   text-align: center;
   height: auto;
   padding: 2rem;
+  border-radius: 2rem;
+    margin-top: 2rem;
+
 }
 
 header h1 {
@@ -76,6 +79,9 @@ header p {
 
 /* The theme switcher style */
 .theme-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   text-align: center;
   margin: 2rem 0;
 }
@@ -90,7 +96,7 @@ header p {
 .theme-button {
   padding: 0.5rem 1rem;
   border: 1px solid var(--accent);
-  border-radius: 4px;
+  border-radius: 9px;
   background-color: white;
   color: var(--accent);
   cursor: pointer;
@@ -106,25 +112,34 @@ header p {
 /* Sections */
 section {
   margin-bottom: 2rem;
-  padding: 1.5rem;
+  padding: 4rem;
   background-color: #fafafa;
-  border-radius: 6px;
+  border-radius: 2rem;
+
 }
 
 section h2 {
   margin-bottom: 1rem;
   color: var(--heading-color);
+
+
 }
 
 /* Profile photo styling */
 #Profile-Photo {
-  text-align: center;
+  text-align: center;     
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 4rem;
 }
 
 #Profile-Photo img {
-  max-width: 100%;
+  display: block;               
+  margin: 0 auto;                
+  max-width: 30%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 18px;
 }
 
 /* Lists */
@@ -135,12 +150,16 @@ ul {
 }
 
 .project {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: #f7e7fb;
+  border-radius: 2rem;
 }
 
 .project h3 {
   margin-bottom: 0.3rem;
   color: var(--heading-color);
+
 }
 
 /*Links*/
@@ -157,7 +176,20 @@ a:hover {
 #Contact ul {
   list-style: none;
   display: flex;
-  justify-content: center;
   gap: 1rem;
   padding: 0;
 }
+
+#Contact li {
+  margin-bottom: 2rem;
+  padding: 0.9rem;
+  background-color: #f7e7fb;
+  border-radius: 0.6rem;
+}
+
+
+
+
+
+
+
