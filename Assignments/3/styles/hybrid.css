@@ -1,6 +1,8 @@
 /* ========== Modern Card-Based Portfolio (styles.css) ========== */
 
 /* -------- CSS Variables (Theme) -------- */
+/* Base Structure comes from AI-1 CSS file.*/
+
 :root {
   --bg: #ffffff;
   --bg-accent: radial-gradient(1200px 600px at 10% -10%, rgba(99,102,241,.25), transparent 60%),
@@ -85,6 +87,8 @@ main {
 }
 
 /* Card style for all sections */
+/* Profile picture section comes from Handwritten CSS file.*/
+
 main > section {
   background: linear-gradient(180deg, var(--surface), var(--surface-2));
   border: 1px solid var(--border);
@@ -107,9 +111,12 @@ main h3 {
   color: #dfe3f3;
 }
 
+/* Skills Section comes from Handwritten CSS file.*/
+
 ul { padding-left: 18px; }
 
 /* -------- Theme Switcher -------- */
+/* Theme switcher comes from AI-CSS file.*/
 .theme-switcher {
   background: linear-gradient(180deg, var(--surface), var(--surface-2));
   border: 1px solid var(--border);
@@ -144,6 +151,8 @@ ul { padding-left: 18px; }
   box-shadow: 0 10px 26px rgba(139,92,246,.35);
 }
 
+/* Profile picture section comes from Handwritten CSS file.*/
+
 #Profile-Photo {
   text-align: center;     
   display: flex;
@@ -159,6 +168,8 @@ ul { padding-left: 18px; }
   height: auto;
   border-radius: 18px;
 }
+
+/* Recent Projects section comes from AI-1 CSS file.*/
 
 #Projects {
   padding: var(--card-padding);
@@ -201,7 +212,7 @@ ul { padding-left: 18px; }
   font-weight: 600;
 }
 
-/*Contact Section */
+/* Contact section comes from Handwritten CSS file.*/
 #Contact ul {
   list-style: none;
   display: flex;
