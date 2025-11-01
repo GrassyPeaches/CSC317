@@ -180,12 +180,27 @@ a:hover {
   padding: 0;
 }
 
+/*Contact Section Button Style */
 #Contact li {
   margin-bottom: 2rem;
   padding: 0.9rem;
   background-color: #f7e7fb;
   border-radius: 0.6rem;
 }
+
+/* Hover Effect */
+#Contact li:hover {
+  background-color: #6416b7;
+  cursor: pointer; 
+  color: white;
+}
+
+/* Makes the link text turns white */
+#Contact li:hover a {
+  color: white;               
+}
+
+
 
 
 
