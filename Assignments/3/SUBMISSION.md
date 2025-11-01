@@ -12,7 +12,14 @@
 # Portfolio Styling Assignment Analysis
 
 ## Group Analysis (250-500 words)
-[Write a collaborative analysis comparing the different approaches. Each member should contribute to this section.]
+
+Working on this project taught us a lot about how different approaches writing CSS by hand versus using AI can affect both the process and the final outcome. Even though all of us wanted to make our pages look clean, modern, and responsive, we each had unique ways of getting there, which led to some interesting lessons.
+For the hand-written CSS parts, both Syed and Graciela focused on layout and structure. Syed worked on improving the padding, spacing, and alignment of elements to make each section look more balanced and easier to read. He learned how using variables and responsive units like rem makes it much easier to keep a design consistent across the site. Graciela, on the other hand, spent a lot of time figuring out how flexbox, margins, and padding work together. At first, she found it tricky to get everything aligned properly, but with practice, she became more comfortable experimenting with colors, spacing, and responsiveness. Both realized that writing CSS by hand takes patience and time, but it also gives you full control over how everything looks.
+
+For the AI-assisted styles, Sydney and Syed explored how giving detailed prompts could help generate CSS faster. Sydney went for a fun neon theme that made her page stand out, but she noticed that the design didn’t always display the same on different devices. Syed’s experience showed something similar AI can be quick and helpful, but it still needs human creativity to make the design feel unique. He had to go back and forth with the AI several times to get something that matched his vision, which showed that AI works best as a helper, not a replacement.
+Graciela’s experience using both text and image prompts connected the two approaches. She found it challenging at first to describe exactly what she wanted the AI to do, but over time she started understanding how to adjust the code it produced. That trial-and-error process helped her learn more about CSS itself and how to use AI more effectively.
+
+Overall, we learned that AI can make the design process faster, but the best results come when you combine human creativity with AI’s efficiency. Writing CSS by hand gave us a deeper understanding of how everything works, while using AI showed us new ways to experiment and speed things up. 
 
 ## Individual Reflections
 
@@ -32,7 +39,6 @@ When I first tried using ChatGPT to help me write CSS for my HTML page, I though
 At first I was a little confused how to approach this, there are dozens of AI tools to choose from, one is better in code, the other is better is understading prompts, but I decided to just use ChatGPT to see what kind of response it will produce. I gave ChatGPT our html file and asked it it give me a css file with specific instructions. Af frist I was impressed by the results, but after paying attention I noticed there were a lot of things that could have been better, I kept giving it specific prompts to fix things, and I think it took me abour 6 -6 prompts to get something that I felt comfortable using. I learned that while AI is amazingly fast, knows a lot, and can help expedite things, it is not creative, yet. A human can take help to expedite things but originality and sense to creativeity is missing.  
 
 ## Group Preferred Version
-[Explain which version the group prefers and why - this should be a consensus decision]
 Our group discussed with each other to reach a consensus on our preferred CSS theme after exploring all of our designs. Each member presented their version, we compared the color schemes, typography, aesthetics, theme, and overall usability. After discussing the pros and cons of each, we agreed we really liked Syed's modern, minimalist theme that balanced clean visuals with easy readability. The decision-making process required compromise and active listening, but ultimately, we chose our hybrid version, becayse we found that combining the best elements from each design created a cohesive and visually appealing final theme everyone was happy with.
 
 ## Collaboration Experience

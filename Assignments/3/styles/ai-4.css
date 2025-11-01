@@ -471,4 +471,97 @@ section li {
 }
 
 .project-meta {
-  c
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.project-tag {
+  background: var(--accent-soft);
+  border: 1px solid rgba(59, 130, 246, 0.24);
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+  font-size: 0.78rem;
+  color: var(--text);
+}
+
+.project-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.project-actions a {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--text);
+  border: 1px solid rgba(59, 130, 246, 0.24);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.project-actions a:hover {
+  background: rgba(59, 130, 246, 0.14);
+  transform: translateY(-1px);
+}
+
+/* responsive grids for projects & experience */
+@media (min-width: 640px) {
+  #projects .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .experience-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 980px) {
+  #projects .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* -----------------------------
+   11. FOOTER
+   ----------------------------- */
+footer {
+  padding: var(--space-4) 0 var(--space-5);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  border-top: 1px solid var(--border);
+}
+
+footer .footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+footer .social {
+  display: flex;
+  gap: 0.6rem;
+}
+
+footer .social a {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.24);
+}
+
+/* -----------------------------
+   12. MISC UTILITIES
+   ----------------------------- */
+.muted { color: var(--text-muted); }
+.center { text-align: center; }
+.hide { display: none !important; }
