@@ -7,7 +7,7 @@
 - [Student Name 4] - [Student ID] - [GitHub Username] 
 
 **Elected Submitter:** [Graciela Ramirez, GrassyPeaches]
-**Repository Link:** https://github.com/GrassyPeaches/CSC317/tree/main/assignments/3
+**Repository Link:** https://github.com/GrassyPeaches/CSC317/tree/main/Assignments/3
 
 # Portfolio Styling Assignment Analysis
 
