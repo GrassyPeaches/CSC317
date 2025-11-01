@@ -1,4 +1,5 @@
-Prompt 1: “Give me CSS for this HTML, make it a modern-looking card-based design.”
+Prompt 1: “Give me CSS for this HTML, make it a modern-looking card-based design, make  the color scheme a shade of blue with modern typography style.”
+
 
 Prompt 2: “Change the header size to smaller like a banner, make the header text size small too to make it fit. Create enough padding after the header to the next section.”
 
