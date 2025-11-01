@@ -20,4 +20,3 @@
 - Hybrid Solution: [All Members - collaborative effort]
 - Switcher Implementation: [All Members - collaborative effort]
 - Documentation & Analysis: Graciela Ramirez and Syed Shah
-  SUBMISSION.md Template
