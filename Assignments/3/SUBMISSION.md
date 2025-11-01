@@ -4,7 +4,7 @@
 - [Syed Shah] - [924729660] - [haider2shah]
 - [Graciela Ramirez] - [925009719] - [GrassyPeaches]
 - [Sydney Leake] - [922864992] - [sydneyl04]
-- [Student Name 4] - [Student ID] - [GitHub Username] 
+- [Shreya] - [923263208] - [shhray] 
 
 **Elected Submitter:** [Graciela Ramirez, GrassyPeaches]
 **Repository Link:** https://github.com/GrassyPeaches/CSC317/tree/main/Assignments/3
