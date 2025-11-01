@@ -14,7 +14,7 @@
 
 - Hand-written CSS (Collaborative): Graciela Ramirez and Syed Shah.
   - Graciela Ramirez : work on body, theme switchers, and heading
-  - Syed Shah: Worked on Padding, and alignment. Created the card style stack design for each project in Recent     Projects Section, added button design in contact me section, 
+  - Syed Shah: Worked on Padding, and alignment. Created the card style stack design for each project in Recent Projects Section, added button design in contact me section, 
 - AI Text Prompt CSS: All members made one each.
 - AI Image+Text Prompt CSS: Graciela Ramirez (contributed image)
 - Hybrid Solution: [All Members - collaborative effort]
