@@ -54,6 +54,15 @@ keys.addEventListener("click", (e) => {
     calculator.dataset.firstValue = displayedNum
     calculator.dataset.operator = action
 
+    //preventing calculations on subsequent clicking
+    if (
+      firstValue &&
+      operator &&
+      previousKeyType !== 'operator'
+    ) {
+      display.textContent = calculate(firstValue, operator, secondValue)
+    }
+
     if (action === "decimal") {
       console.log("decimal key!");
 
