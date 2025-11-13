@@ -2,7 +2,7 @@ const calculator = document.querySelector(".calculator");
 const keys = calculator.querySelector(".calculator__keys");
 const display = document.querySelector(".calculator__display");
 
-// --- math ---
+// --- MATHING ---
 const calculate = (n1, operator, n2) => {
   const a = parseFloat(n1);
   const b = parseFloat(n2);
@@ -20,13 +20,13 @@ const calculate = (n1, operator, n2) => {
   }
 };
 
-// tame float tails (e.g., 0.30000000004 -> "0.3")
+// TAMING THE FLOATS
 const round = (val) =>
   val === "Error"
     ? "Error"
     : parseFloat(Number(val).toPrecision(12)).toString();
 
-// Helpers
+// CLEARING THE GRAYS FOR PRESSING BUTTONS
 const clearOperatorDepressed = () => {
   keys
     .querySelectorAll("button")
@@ -34,20 +34,20 @@ const clearOperatorDepressed = () => {
 };
 const setPrevType = (t) => (calculator.dataset.previousKeyType = t);
 
-// Click delegation
+// CLICKING THE KEYS
 keys.addEventListener("click", (e) => {
   const key = e.target.closest("button");
   if (!key) return;
 
-  const action = key.dataset.action; // undefined for number keys
+  const action = key.dataset.action; // NUMBER KEYS ARE UNDEFINED
   const keyContent = key.textContent.trim();
   const displayedNum = display.textContent;
   const previousKeyType = calculator.dataset.previousKeyType;
 
-  // clear depressed state first
+  // NEED TO CLEAR DEPRESSED FORM
   clearOperatorDepressed();
 
-  // ---- number keys ----
+  // ---- NUMBER KEYS ----
   if (!action) {
     if (
       displayedNum === "0" ||
@@ -65,7 +65,7 @@ keys.addEventListener("click", (e) => {
     return;
   }
 
-  // ---- decimal key ----
+  // ---- DECIMAL KEY ----
   if (action === "decimal") {
     if (previousKeyType === "operator" || previousKeyType === "calculate") {
       display.textContent = "0.";
@@ -78,10 +78,9 @@ keys.addEventListener("click", (e) => {
     return;
   }
 
-  // ---- sign toggle (±) ----
+  // ---- NEGATIVE KEY ----
   if (action === "sign") {
     if (displayedNum === "0") {
-      // keep 0 as 0 like iPhone
       display.textContent = "0";
     } else if (displayedNum.startsWith("-")) {
       display.textContent = displayedNum.slice(1);
@@ -94,12 +93,7 @@ keys.addEventListener("click", (e) => {
     return;
   }
 
-  // ---- percent (%) ----
-  // iPhone behavior:
-  // - If there's a pending operator and a first value:
-  //     add/subtract: second = first * (second/100)
-  //     multiply/divide: second = second/100
-  // - Otherwise: displayed = displayed/100
+  // ---- PERCENT KEY ----
   if (action === "percent") {
     let current = parseFloat(displayedNum);
     if (!Number.isFinite(current)) return;
@@ -125,22 +119,21 @@ keys.addEventListener("click", (e) => {
     return;
   }
 
-  // ---- dice 🎲 ----
-if (action === "dice") {
-  // roll between 1–6 (integer)
-  const roll = Math.floor(Math.random() * 6) + 1;
-  display.textContent = roll.toString();
+  // ---- MY DICE 🎲 ----
+  if (action === "dice") {
+    // roll between 1–9
+    const roll = Math.floor(Math.random() * 9) + 1;
+    display.textContent = roll.toString();
 
-  calculator.dataset.previousKeyType = "dice";
+    calculator.dataset.previousKeyType = "dice";
 
-  // switch CE/AC appropriately
-  const clearButton = calculator.querySelector("[data-action=clear]");
-  if (clearButton) clearButton.textContent = "CE";
-  return;
-}
+    // SWITCH CE/AC
+    const clearButton = calculator.querySelector("[data-action=clear]");
+    if (clearButton) clearButton.textContent = "CE";
+    return;
+  }
 
-
-  // ---- operator keys ----
+  // ---- OPERATOR KEYS ----
   if (
     action === "add" ||
     action === "subtract" ||
@@ -173,7 +166,7 @@ if (action === "dice") {
     return;
   }
 
-  // ---- clear key (AC/CE) ----
+  // ---- CLEAR KEY (AC/CE) ----
   if (action === "clear") {
     if (key.textContent === "AC") {
       calculator.dataset.firstValue = "";
@@ -181,14 +174,14 @@ if (action === "dice") {
       calculator.dataset.operator = "";
       calculator.dataset.previousKeyType = "";
     } else {
-      key.textContent = "AC"; // switching CE -> AC
+      key.textContent = "AC"; // switching from CE -> AC
     }
     display.textContent = "0";
     setPrevType("clear");
     return;
   }
 
-  // ---- equals key ----
+  // ---- EQUAL KEY ----
   if (action === "calculate") {
     let firstValue = calculator.dataset.firstValue;
     const operator = calculator.dataset.operator;
@@ -196,14 +189,14 @@ if (action === "dice") {
 
     if (firstValue && operator) {
       if (previousKeyType === "calculate") {
-        // Repeat last operation: "5 + =" adds last modValue again
         firstValue = displayedNum;
         secondValue = calculator.dataset.modValue;
       }
       const result = round(calculate(firstValue, operator, secondValue));
       display.textContent = result;
       calculator.dataset.firstValue = result === "Error" ? "" : result;
-      calculator.dataset.modValue = secondValue; // store for repeated '='
+      //NEED TO STORE FOR DOUBLE =
+      calculator.dataset.modValue = secondValue;
     }
     setPrevType("calculate");
     const clearButton = calculator.querySelector("[data-action=clear]");
