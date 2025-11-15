@@ -204,3 +204,49 @@ keys.addEventListener("click", (e) => {
     return;
   }
 });
+
+//added keyboard functionality
+
+(() => {
+  const keyMap = {
+    "+": "add",
+    "-": "subtract",
+    "*": "multiply",
+    "/": "divide",
+    Enter: "calculate",
+    "=": "calculate",
+    ".": "decimal",
+    "%": "percent",
+    n: "sign",
+    F9: "sign",
+    d: "dice",
+    Escape: "clear",
+    Backspace: "clear",
+  };
+
+  const findButtonForKey = (key) => {
+    if (/^\d$/.test(key)) {
+      return [...keys.querySelectorAll("button")].find(
+        (b) => !b.dataset.action && b.textContent.trim() === key
+      );
+    }
+    const action = keyMap[key];
+    if (!action) return null;
+    return keys.querySelector(`[data-action="${action}"]`);
+  };
+  const isTypingInField = (el) =>
+    !!el &&
+    (el.tagName === "INPUT" ||
+      el.tagName === "TEXTAREA" ||
+      el.isContentEditable);
+
+  document.addEventListener("keydown", (e) => {
+    if (isTypingInField(e.target)) return;
+    const btn = findButtonForKey(e.key);
+    if (!btn) return;
+    e.preventDefault();
+    if (e.key === "Backspace") btn.textContent = "CE";
+    btn.focus();
+    btn.click();
+  });
+})();
