@@ -1,5 +1,19 @@
 <%- include('./partials/header') %>
 
+<%# The sidebar will only appear after user login authenticated %>
+<% if (isAuthenticated) { %>
+  <div class="sidebar-container">
+    <%- include('./partials/sidebar')%>
+  </div>
+<% } %>
+
+<%# This is only to test the design of sidebar. REMOVE IT AFTER COMPLETED%>
+<%- include('./partials/sidebar')%>
+<%# This is only to test the design of sidebar. REMOVE IT AFTER COMPLETED%>
+
+
+
+
 <div class="container">
   <div class="welcome-section">
     <h1><%= message %></h1>
