@@ -63,6 +63,43 @@ const createTables = async () => {
     `);
     console.log('✓ Indexes created');
 
+    // Create recipes table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS recipes (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+        title VARCHAR(50) NOT NULL,
+        description VARCHAR(500) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✓ Recipes table created');
+
+    //Create ingredients table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS ingredients (
+        id SERIAL PRIMARY KEY,
+        recipe_id INTEGER NOT NULL UNIQUE REFERENCES recipes(id) ON DELETE CASCADE,
+        name VARCHAR(50) NOT NULL,
+        unit VARCHAR(50) NULL,
+        quantity DECIMAL NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✓ Ingredients table created');
+
+    //Create steps table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS steps (
+        id SERIAL PRIMARY KEY,
+        recipe_id INTEGER NOT NULL UNIQUE REFERENCES recipes(id) ON DELETE CASCADE,
+        number INT NOT NULL,
+        content VARCHAR(500) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✓ Steps table created');
+
     console.log('\n✅ Database initialization complete!');
   } catch (error) {
     console.error('Error initializing database:', error);
