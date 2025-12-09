@@ -1,0 +1,73 @@
+/* SIDEBAR WRAPPER */
+.sidebar {
+  width: 16vw;
+  height: 100vh;
+  background-color: white;
+  padding: 1.2rem 1.2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/*  HEADER */
+.sidebar-header h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2774b8;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+/*  NAV LINKS  */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.sidebar-link {
+  display: flex;
+  justify-content: left;
+  gap: .6rem;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: #000000;
+  font-weight: 500;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+/* HOVER FOR NORMAL LINKS (not Create Recipe) */
+.sidebar-link:not(.create-btn):hover {
+  text-decoration: none;
+  background: rgba(24, 90, 147, 0.12);
+  transform: scale(0.96);
+}
+
+/* ACTIVE PAGE (stays highlighted) */
+.sidebar-link.active:not(.create-btn) {
+  background: rgba(24, 90, 147, 0.12);
+  font-weight: 600;
+}
+
+/* CREATE RECIPE BUTTON */
+.sidebar-link.create-btn {
+  background: #2774b8;
+  color: white !important;
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.8rem 1rem;
+  margin-top: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+/* Hover: same color, only subtle shrink */
+.sidebar-link.create-btn:hover {
+  background: #2774b8;  /* same color */
+  transform: scale(0.96);
+  text-decoration: none !important;
+}
