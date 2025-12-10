@@ -1,53 +1,75 @@
 <%- include('./partials/header') %>
 
-<%# The sidebar will only appear after user login authenticated %>
+<%# Sidebar only after login %>
 <% if (isAuthenticated) { %>
   <div class="sidebar-container">
     <%- include('./partials/sidebar')%>
   </div>
 <% } %>
 
-<%# This is only to test the design of sidebar. REMOVE IT AFTER COMPLETED%>
-<%- include('./partials/sidebar')%>
-<%# This is only to test the design of sidebar. REMOVE IT AFTER COMPLETED%>
+<div class="home-container">
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1>Welcome to PlateMate</h1>
+      <p class="hero-subtitle">
+        PlateMate is a simple recipe sharing app where you can save your own recipes
+        and access them from anywhere. No more lost notes, random screenshots, or
+        half-remembered ingredients.
+      </p>
 
+      <% if (isAuthenticated) { %>
+        <div class="hero-actions">
+          <a href="/recipes" class="btn primary-btn">Go to Recipes</a>
+          <a href="/recipes/new" class="btn secondary-btn">Create a Recipe</a>
+        </div>
+      <% } else { %>
+        <div class="hero-actions">
+          <a href="/auth/register" class="btn primary-btn">Create an Account</a>
+          <a href="/auth/login" class="btn secondary-btn">Log In</a>
+        </div>
+        <p class="hero-note">
+          Sign up to start building your personal digital cookbook.
+        </p>
+      <% } %>
+    </div>
 
+    <div class="hero-image-wrapper">
+      <img
+        src="/images/hero-recipe.jpg"
+        alt="Table with homemade dishes and recipe ingredients"
+        class="hero-image"
+      />
+    </div>
+  </section>
 
-
-<div class="container">
-  <div class="welcome-section">
-    <h1><%= message %></h1>
-    <p>A simple authentication system for web applications</p>
-    
-    <% if (isAuthenticated) { %>
-      <div class="action-buttons">
-        <a href="/user/profile" class="btn primary-btn">View Profile</a>
-      </div>
-    <% } else { %>
-      <div class="action-buttons">
-        <a href="/auth/login" class="btn primary-btn">Login</a>
-        <a href="/auth/register" class="btn secondary-btn">Register</a>
-      </div>
-    <% } %>
-  </div>
-  
-  <div class="features-section">
-    <h2>Features</h2>
+  <!-- ===== WHAT THE APP DOES ===== -->
+  <section class="features-section">
+    <h2>What can you do with PlateMate?</h2>
     <div class="feature-grid">
       <div class="feature-card">
-        <h3>User Authentication</h3>
-        <p>Secure login and registration with password hashing</p>
+        <h3>Store Your Recipes</h3>
+        <p>
+          Save your favorite dishes with titles, descriptions, ingredients, and step-by-step
+          instructions so you never forget how you made them.
+        </p>
       </div>
       <div class="feature-card">
-        <h3>Session Management</h3>
-        <p>Persistent sessions with secure cookies</p>
+        <h3>Stay Organized</h3>
+        <p>
+          Keep all your recipes in one place instead of scattered across photos, messages,
+          and paper notes.
+        </p>
       </div>
       <div class="feature-card">
-        <h3>Protected Routes</h3>
-        <p>Restrict access to authenticated users only</p>
+        <h3>Access Anywhere</h3>
+        <p>
+          Log in from any device and quickly pull up your recipes while you cook at home,
+          at a friend’s place, or anywhere else.
+        </p>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 
 <%- include('./partials/footer') %>
