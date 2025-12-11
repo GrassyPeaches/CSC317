@@ -561,3 +561,178 @@ details pre {
     margin-bottom: 0.5rem;
   }
 }
+
+/* Home / Hero Section */
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3.5rem;
+}
+
+/* Layout for hero: text + image side by side */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding: 3rem 0;
+}
+
+/* Left side: text */
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 2.4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: var(--text-light);
+  max-width: 520px;
+}
+
+/* Reuse existing .action-buttons styles, just tweak spacing */
+.hero-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* Right side: image */
+.hero-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
+
+.features-section {
+  margin-top: 1rem;
+}
+
+/* Responsive: stack on small screens */
+
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+/* ===== Create Recipe Page ===== */
+
+.form-container {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 2.5rem 2.75rem;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.form-container h1 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+/* Make the form breathe a bit */
+.form-container form {
+  margin-top: 1rem;
+}
+
+/* Textareas styled to match inputs */
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Space out form groups on this page a bit more */
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+/* Actions: keep using global .btn but center nicely */
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.form-actions .btn {
+  min-width: 140px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .form-container {
+    margin: 2rem 1rem;
+    padding: 1.75rem 1.5rem;
+  }
+
+  .form-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
