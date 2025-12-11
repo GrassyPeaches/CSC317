@@ -101,6 +101,8 @@ After installing PostgreSQL, create a database for the project:
 ```bash
 # Connect to PostgreSQL as the postgres user
 psql -U postgres
+#or 
+psql postgres
 
 # In the PostgreSQL shell, create the database
 CREATE DATABASE csc317_project;
