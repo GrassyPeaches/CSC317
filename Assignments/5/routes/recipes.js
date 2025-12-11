@@ -1,14 +1,57 @@
 const express = require('express');
 const router = express.Router();
 
-// Show the create recipe page
+/* ===========================
+    SHOW ALL RECIPES (EXPLORE)
+   =========================== */
+router.get('/', (req, res) => {
+  const recipes = [
+    {
+      id: 1,
+      title: "Classic Spaghetti Carbonara",
+      description: "A creamy, comforting Italian pasta dish.",
+      image: "/images/carbonara.jpg",
+      tags: ["Italian", "Pasta"],
+      likes: 12
+    },
+    {
+      id: 2,
+      title: "Chicken Biryani",
+      description: "Aromatic basmati rice cooked with spiced chicken.",
+      image: "/images/biryani.jpg",
+      tags: ["Pakistani", "Rice"],
+      likes: 27
+    },
+    {
+      id: 3,
+      title: "Chocolate Chip Cookies",
+      description: "Crispy edges, soft center — the perfect cookie.",
+      image: "/images/cookies.jpg",
+      tags: ["Dessert", "Baking"],
+      likes: 45
+    }
+  ];
+
+  res.render('recipes/index', {
+    title: "All Recipes",
+    recipes
+  });
+});
+
+
+/* ===========================
+    SHOW CREATE RECIPE PAGE
+   =========================== */
 router.get('/new', (req, res) => {
   res.render('recipes/new', {
     title: 'Create Recipe'
   });
 });
 
-// Show a single recipe
+
+/* ===========================
+    SHOW A SINGLE RECIPE
+   =========================== */
 router.get('/:id', (req, res) => {
   const recipe = {
     title: "Chicken Biryani",
@@ -49,45 +92,13 @@ router.get('/:id', (req, res) => {
   };
 
   res.render('recipes/show', {
-    title: recipe.title, // 🔥 This fixes your “title is not defined” error
+    title: recipe.title,
     recipe
   });
 });
 
-// Export router (must be at bottom)
+
+/* ===========================
+    EXPORT ROUTER AT THE BOTTOM
+   =========================== */
 module.exports = router;
-
-// Show all recipes page
-router.get('/', (req, res) => {
-  const recipes = [
-    {
-      id: 1,
-      title: "Classic Spaghetti Carbonara",
-      description: "A creamy, comforting Italian pasta dish.",
-      image: "/images/carbonara.jpg",
-      tags: ["Italian", "Pasta"],
-      likes: 12
-    },
-    {
-      id: 2,
-      title: "Chicken Biryani",
-      description: "Aromatic basmati rice cooked with spiced chicken.",
-      image: "/images/biryani.jpg",
-      tags: ["Pakistani", "Rice"],
-      likes: 27
-    },
-    {
-      id: 3,
-      title: "Chocolate Chip Cookies",
-      description: "Crispy edges, soft center — the perfect cookie.",
-      image: "/images/cookies.jpg",
-      tags: ["Dessert", "Baking"],
-      likes: 45
-    }
-  ];
-
-  res.render('recipes/index', {
-    title: "All Recipes",
-    recipes
-  });
-});

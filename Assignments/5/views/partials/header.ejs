@@ -18,7 +18,10 @@
         
         <% if (isAuthenticated) { %>
           <li><a href="/user/profile" class="<%= path === '/user/profile' ? 'active' : '' %>">Profile</a></li>
+          <li><a href="/recipes" class="<%= path === '/recipes' ? 'active' : '' %>">Explore</a></li>
           <li><a href="/user/settings" class="<%= path === '/user/settings' ? 'active' : '' %>">Settings</a></li>
+
+
           <li><a href="/auth/logout">Logout</a></li>
         <% } else { %>
           <li><a href="/auth/login" class="<%= path === '/auth/login' ? 'active' : '' %>">Login</a></li>
