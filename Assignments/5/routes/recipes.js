@@ -56,3 +56,38 @@ router.get('/:id', (req, res) => {
 
 // Export router (must be at bottom)
 module.exports = router;
+
+// Show all recipes page
+router.get('/', (req, res) => {
+  const recipes = [
+    {
+      id: 1,
+      title: "Classic Spaghetti Carbonara",
+      description: "A creamy, comforting Italian pasta dish.",
+      image: "/images/carbonara.jpg",
+      tags: ["Italian", "Pasta"],
+      likes: 12
+    },
+    {
+      id: 2,
+      title: "Chicken Biryani",
+      description: "Aromatic basmati rice cooked with spiced chicken.",
+      image: "/images/biryani.jpg",
+      tags: ["Pakistani", "Rice"],
+      likes: 27
+    },
+    {
+      id: 3,
+      title: "Chocolate Chip Cookies",
+      description: "Crispy edges, soft center — the perfect cookie.",
+      image: "/images/cookies.jpg",
+      tags: ["Dessert", "Baking"],
+      likes: 45
+    }
+  ];
+
+  res.render('recipes/index', {
+    title: "All Recipes",
+    recipes
+  });
+});
