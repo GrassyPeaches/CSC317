@@ -736,3 +736,77 @@ textarea:focus {
   }
 }
 
+/**************************************
+    SINGLE RECIPE PAGE STYLES
+**************************************/
+
+.recipe-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+
+.recipe-title {
+  font-size: 2.4rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.recipe-description {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 1.2rem;
+}
+
+.recipe-tags .tag {
+  display: inline-block;
+  background: #eef7ff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-right: 8px;
+  color: var(--primary-color);
+  font-size: .9rem;
+}
+
+.likes {
+  font-size: 1.1rem;
+  color: #e74c3c;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-sections {
+  display: flex;
+  gap: 2rem;
+}
+
+.recipe-list {
+  list-style: none;
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ececec;
+}
+
+.recipe-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.recipe-list li:last-child {
+  border-bottom: none;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
