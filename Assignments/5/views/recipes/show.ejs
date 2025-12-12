@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/style.css">
+
+<div class="recipe-container">
+
+  <div class="recipe-header">
+    <h1 class="recipe-title"><%= recipe.title %></h1>
+    <p class="recipe-description"><%= recipe.description %></p>
+  </div>
+
+  <div class="recipe-tags">
+    <% recipe.tags.forEach(tag => { %>
+      <span class="tag">#<%= tag %></span>
+    <% }) %>
+  </div>
+
+  <div class="likes">
+    ❤️ <%= recipe.likes %> likes
+  </div>
+
+  <div class="recipe-sections">
+    <div>
+      <h2 class="section-title">Ingredients</h2>
+      <ul class="recipe-list">
+        <% recipe.ingredients.forEach(item => { %>
+          <li><%= item %></li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="section-title">Instructions</h2>
+      <ul class="recipe-list">
+        <% recipe.instructions.forEach(step => { %>
+          <li><%= step %></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+
+  <a href="/recipes" class="back-link">← Back to All Recipes</a>
+</div>
+
+<%- include('../partials/footer') %>

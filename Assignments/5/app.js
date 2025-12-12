@@ -20,6 +20,8 @@ const { pool } = require('./config/database');
 const indexRoutes = require('./routes/index');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const recipeRoutes = require('./routes/recipes');
+
 
 // Import custom middleware
 const { setLocals } = require('./middlewares/locals');
@@ -110,6 +112,8 @@ app.use(setLocals);
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/recipes', recipeRoutes);
+
 
 // Error handling middleware
 app.use(handleErrors);
@@ -119,3 +123,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
