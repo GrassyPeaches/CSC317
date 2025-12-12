@@ -147,6 +147,9 @@ exports.postNewRecipe = async (req, res, next) => {
   }
 }
 
+/**
+ * Edit recipe page
+ */
 exports.getEditRecipe = async (req, res) => {
   const recipe = await Recipe.findById(req.params.id);
   if (recipe == null) {
@@ -260,3 +263,31 @@ exports.postEditRecipe = async (req, res, next) => {
   }
 }
 
+/**
+ * Delete a recipe
+ */
+exports.deleteRecipe = async (req, res) => {
+
+  const user = { ...req.session.user };
+  // user.hasProfileImage = user.hasProfileImage || false;
+
+  const userRecipes = await Recipe.findByUserId(user.id);
+  if (userRecipes == null) {
+    return res.status(404).render("/error");
+  }
+  const recipe = await Recipe.findById(req.params.id);
+  if (recipe == null) {
+    return res.status(404).render("/error");
+  }
+
+  console.log(recipe);
+
+  await Recipe.deleteById(recipe.id);
+
+
+  res.render("user/profile", {
+    title: "My Recipes",
+    user: user,
+    userRecipes: userRecipes,
+  });
+}

@@ -1,1 +1,47 @@
-<!--//this needs to be a edit page where the edit functions in the recipe controller will refer to-->
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/style.css">
+
+<div class="recipe-container">
+
+    <div class="recipe-header">
+        <h1 class="recipe-title"><%= recipe.title %></h1>
+        <p class="recipe-description"><%= recipe.description %></p>
+    </div>
+
+    <div class="recipe-sections">
+        <div>
+            <h2 class="section-title">Ingredients</h2>
+            <ul class="recipe-list">
+                <% recipe.ingredients.forEach(item => { %>
+                    <li><%= item.name %> <%= item.unit %> <%= item.quantity%></li>
+                <% }) %>
+            </ul>
+        </div>
+
+        <div>
+            <h2 class="section-title">Instructions</h2>
+            <ul class="recipe-list">
+                <% recipe.steps.forEach(step => { %>
+                    <li><%= step.number %> <%= step.content %></li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+
+    <a href="#" onclick="deleteRecipe(<%= recipe.id %>)" class="view-btn">DELETE</a>
+    <a href="/recipes/new" onclick="getEditRecipe(<%= recipe.id %>)" class="view-btn">Edit</a>
+    <a href="/recipes" class="back-link">← Back to All Recipes</a>
+</div>
+
+<%- include('../partials/footer') %>
+
+
+<script>
+    function deleteRecipe(id) {
+        fetch(`/recipes/delete/${id}`, {
+            method: 'DELETE'
+        }).then(() => {
+            window.location.href = "/user/profile"
+        });
+    }
+</script>

@@ -26,6 +26,9 @@ router.get('/edit/:id', recipeController.getEditRecipe);
 //POST - Edit a recipe
 router.post('/edit/:id', isAuthenticated, recipeController.postEditRecipe);
 
+//DELETE - delete recipe
+router.delete('/delete/:id', isAuthenticated, recipeController.deleteRecipe);
+
 // Show a single recipe
 /*router.get('/:id', (req, res) => {
   const recipe = {
