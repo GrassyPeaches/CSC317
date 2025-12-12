@@ -32,22 +32,15 @@ exports.getRecipe = async (req, res) => {
 /**
  * Display all recipes
  */
-exports.getRecipe = async (req, res) => {
-  const recipe = await Recipe.findById(req.params.id);
-  if (recipe == null) {
+exports.getAllRecipes = async (req, res) => {
+  const recipes = await Recipe.findAll();
+  if (recipes == null) {
     return res.status(404).render("/error");
   }
 
-  console.log(recipe);
-
-  recipe.ingredients = await Ingredient.findByRecipeId(recipe.id);
-  //console.log("Ingredients", ingredients);
-  console.log(recipe);
-  recipe.steps = await Step.findByRecipeId(recipe.id);
-  //recipe.recipe_images = await RecipeImage.findByRecipeId(recipe.id);
-
-  res.render("recipes/show", {
-    title: "Recipe",
-    recipe: recipe,
+  console.log(recipes);
+  res.render("recipes/index", {
+    title: "All Recipes",
+    recipes: recipes,
   });
 };

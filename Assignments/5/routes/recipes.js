@@ -10,8 +10,11 @@ router.get('/new', (req, res) => {
 });
 
 
-// GET /recipes/:id - User profile page
+// GET /recipes/:id - User recipe page
 router.get('/:id', recipeController.getRecipe);
+
+//GET /recipes/ - All recipes
+router.get('/', recipeController.getAllRecipes);
 
 // Show a single recipe
 /*router.get('/:id', (req, res) => {

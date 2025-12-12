@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/style.css" />
+
+<div class="all-recipes-container">
+  <h1 class="page-title">All Recipes</h1>
+
+  <div class="recipes-grid">
+    <% recipes.forEach(recipe => { %>
+    <div class="recipe-card">
+      <div class="recipe-image-wrapper">
+        <img
+          src="<%= recipe.image %>"
+          alt="<%= recipe.title %>"
+          class="recipe-image"
+        />
+      </div>
+
+      <div class="recipe-card-content">
+        <h2 class="recipe-card-title"><%= recipe.title %></h2>
+
+        <p class="recipe-card-description"><%= recipe.description %></p>
+
+        <div class="recipe-tags">
+          <% recipe.tags.forEach(tag => { %>
+          <span class="tag">#<%= tag %></span>
+          <% }) %>
+        </div>
+
+        <div class="recipe-likes">❤️ <%= recipe.likes %> likes</div>
+
+        <a href="/recipes/<%= recipe.id %>" class="view-btn">View Recipe →</a>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
