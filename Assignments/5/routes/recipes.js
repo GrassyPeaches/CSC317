@@ -1,47 +1,8 @@
 const express = require('express');
+const recipeController = require("../controllers/recipeController");
 const router = express.Router();
 
-/* ===========================
-    SHOW ALL RECIPES (EXPLORE)
-   =========================== */
-router.get('/', (req, res) => {
-  const recipes = [
-    {
-      id: 1,
-      title: "Classic Spaghetti Carbonara",
-      description: "A creamy, comforting Italian pasta dish.",
-      image: "/images/carbonara.jpg",
-      tags: ["Italian", "Pasta"],
-      likes: 12
-    },
-    {
-      id: 2,
-      title: "Chicken Biryani",
-      description: "Aromatic basmati rice cooked with spiced chicken.",
-      image: "/images/biryani.jpg",
-      tags: ["Pakistani", "Rice"],
-      likes: 27
-    },
-    {
-      id: 3,
-      title: "Chocolate Chip Cookies",
-      description: "Crispy edges, soft center — the perfect cookie.",
-      image: "/images/cookies.jpg",
-      tags: ["Dessert", "Baking"],
-      likes: 45
-    }
-  ];
-
-  res.render('recipes/index', {
-    title: "All Recipes",
-    recipes
-  });
-});
-
-
-/* ===========================
-    SHOW CREATE RECIPE PAGE
-   =========================== */
+// Show the create recipe page
 router.get('/new', (req, res) => {
   res.render('recipes/new', {
     title: 'Create Recipe'
@@ -49,10 +10,14 @@ router.get('/new', (req, res) => {
 });
 
 
-/* ===========================
-    SHOW A SINGLE RECIPE
-   =========================== */
-router.get('/:id', (req, res) => {
+// GET /recipes/:id - User recipe page
+router.get('/:id', recipeController.getRecipe);
+
+//GET /recipes/ - All recipes
+router.get('/', recipeController.getAllRecipes);
+
+// Show a single recipe
+/*router.get('/:id', (req, res) => {
   const recipe = {
     title: "Chicken Biryani",
     description:
@@ -92,13 +57,11 @@ router.get('/:id', (req, res) => {
   };
 
   res.render('recipes/show', {
-    title: recipe.title,
+    title: recipe.title, // 🔥 This fixes your “title is not defined” error
     recipe
   });
 });
+ */
 
-
-/* ===========================
-    EXPORT ROUTER AT THE BOTTOM
-   =========================== */
+// Export router (must be at bottom)
 module.exports = router;

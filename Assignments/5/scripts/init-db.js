@@ -100,6 +100,29 @@ const createTables = async () => {
     `);
     console.log('✓ Steps table created');
 
+    // Create recipe_images table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS recipe_images (
+        id SERIAL PRIMARY KEY,
+        recipe_id INTEGER NOT NULL UNIQUE REFERENCES recipes(id) ON DELETE CASCADE,
+        data BYTEA NOT NULL,
+        content_type VARCHAR(50) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✓ Recipe images table created');
+
+    // Create recipe_likes table
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS recipe_likes (
+        id SERIAL PRIMARY KEY,
+        recipe_id INTEGER NOT NULL REFERENCES recipes(id) ON DELETE CASCADE,
+        user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log('✓ Recipe likes table created');
+
     console.log('\n✅ Database initialization complete!');
   } catch (error) {
     console.error('Error initializing database:', error);

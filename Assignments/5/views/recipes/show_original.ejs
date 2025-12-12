@@ -8,12 +8,22 @@
     <p class="recipe-description"><%= recipe.description %></p>
   </div>
 
+  <div class="recipe-tags">
+    <% recipe.tags.forEach(tag => { %>
+      <span class="tag">#<%= tag %></span>
+    <% }) %>
+  </div>
+
+  <div class="likes">
+    ❤️ <%= recipe.likes %> likes
+  </div>
+
   <div class="recipe-sections">
     <div>
       <h2 class="section-title">Ingredients</h2>
       <ul class="recipe-list">
         <% recipe.ingredients.forEach(item => { %>
-          <li><%= item.name %> <%= item.unit %> <%= item.quantity%></li>
+          <li><%= item %></li>
         <% }) %>
       </ul>
     </div>
@@ -21,8 +31,8 @@
     <div>
       <h2 class="section-title">Instructions</h2>
       <ul class="recipe-list">
-        <% recipe.steps.forEach(step => { %>
-          <li><%= step.number %> <%= step.content %></li>
+        <% recipe.instructions.forEach(step => { %>
+          <li><%= step %></li>
         <% }) %>
       </ul>
     </div>
