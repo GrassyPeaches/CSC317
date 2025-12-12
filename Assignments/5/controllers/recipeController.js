@@ -125,6 +125,7 @@ exports.postNewRecipe = async (req, res, next) => {
     const userId = req.session.user.id;
 
     const recipeCreated = await Recipe.create(userId, recipe.title, recipe.description);
+
     for (const ingredient of recipe.ingredients) {
       await Ingredient.create(recipeCreated.id, ingredient.name, ingredient.unit, ingredient.quantity);
     }
@@ -146,86 +147,116 @@ exports.postNewRecipe = async (req, res, next) => {
   }
 }
 
+exports.getEditRecipe = async (req, res) => {
+  const recipe = await Recipe.findById(req.params.id);
+  if (recipe == null) {
+    return res.status(404).render("/error");
+  }
 
+  console.log(recipe);
 
+  recipe.ingredients = await Ingredient.findByRecipeId(recipe.id);
+  //console.log("Ingredients", ingredients);
+  console.log(recipe);
+  recipe.steps = await Step.findByRecipeId(recipe.id);
+  //recipe.recipe_images = await RecipeImage.findByRecipeId(recipe.id);
 
+  res.render("recipes/edit", {
+    title: "Recipe",
+    recipe: recipe,
+  });
+};
 
-exports.postLogin = async (req, res, next) => {
+/**
+ * Edit a recipe
+ */
+exports.postEditRecipe = async (req, res, next) => {
   try {
-    console.log('Login attempted for email:', req.body.email);
+    console.log("EDIT RECIPE");
+    const recipe = {};
+    console.log("BODY!")
+    console.log(req.body);
 
-    // Check for validation errors
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      console.log('Validation errors:', errors.array());
-      return res.status(400).render('auth/login', {
-        title: 'Login',
-        errors: errors.array(),
-        formData: {
-          email: req.body.email
-        }
+    recipe.id = req.body.id;
+    recipe.title = req.body.title;
+    recipe.description = req.body.description;
+
+    // ingredients and steps should be an array
+
+    recipe.ingredients = req.body.ingredients;
+    recipe.steps = req.body.steps;
+    console.log("RECIPE")
+    console.log(recipe);
+
+    if ( !Number.isInteger(recipe.id)) {
+      return res.status(400).render('recipes/edit', {
+        title: 'Edit Recipe',
+        errors: [{msg: 'Invalid recipe Id type'}],
       });
     }
 
-    // Find user by email
-    const user = await User.findByEmail(req.body.email);
-    console.log('User found in database:', !!user);
+    if (await Recipe.findById(req.params.id) == null) {
+      return res.status(404).render("/error");
+    }
 
-    // Check if user exists
-    if (!user) {
-      console.log('User not found in database');
-      return res.status(401).render('auth/login', {
-        title: 'Login',
-        errors: [{ msg: 'Invalid email or password' }],
-        formData: {
-          email: req.body.email
-        }
+    if (typeof recipe.title !== 'string' || typeof recipe.description !== 'string') {
+      return res.status(400).render('recipes/edit', {
+        title: 'Edit Recipe',
+        errors: [{msg: 'Invalid title and description type'}],
       });
     }
 
-    // Check password
-    const isPasswordValid = await User.comparePassword(req.body.password, user.password);
-    console.log('Password valid:', isPasswordValid);
-
-    if (!isPasswordValid) {
-      console.log('Invalid password');
-      return res.status(401).render('auth/login', {
-        title: 'Login',
-        errors: [{ msg: 'Invalid email or password' }],
-        formData: {
-          email: req.body.email
-        }
+    if (!Array.isArray(recipe.ingredients) || !Array.isArray(recipe.steps)) {
+      return res.status(400).render('recipes/edit', {
+        title: 'Edit Recipe',
+        errors: [{msg: 'Invalid list'}],
       });
     }
 
-    // Set user session (don't include password in the session)
-    req.session.user = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      hasProfileImage: user.has_profile_image,
-      createdAt: user.created_at
-    };
-
-    // Save session explicitly to ensure it's stored
-    req.session.save(err => {
-      if (err) {
-        console.error('Session save error:', err);
-        return next(err);
+    for (const ingredient of recipe.ingredients) {
+      if (!ingredient && typeof ingredient !== "object" ||
+          typeof ingredient.name !== "string" ||
+          typeof ingredient.unit !== "string" ||
+          !Number.isInteger(ingredient.quantity)) {
+        return res.status(400).render('recipes/edit', {
+          title: 'Edit Recipe',
+          errors: [{msg: 'Invalid ingredient name, unit or description type'}],
+        });
       }
+    }
 
-      console.log('Session saved successfully. User is now authenticated.');
-      console.log('Session data:', req.session);
+    for (const step of recipe.steps) {
+      if (!step && typeof step !== "object" ||
+          typeof step.content !== "string" ||
+          !Number.isInteger(step.number)) {
+        return res.status(400).render('recipes/edit', {
+          title: 'Edit Recipe',
+          errors: [{msg: 'Invalid step content or number type'}],
+        });
+      }
+    }
 
-      // Redirect to originally requested URL or profile page
-      const redirectUrl = req.session.returnTo || '/user/profile';
-      delete req.session.returnTo;
+    const userId = req.session.user.id;
 
-      console.log('Redirecting to:', redirectUrl);
-      res.redirect(redirectUrl);
+    const recipeCreated = await Recipe.upsert(recipe.id, userId, recipe.title, recipe.description);
+    for (const ingredient of recipe.ingredients) {
+      await Ingredient.upsert(recipe.id, recipeCreated.id, ingredient.name, ingredient.unit, ingredient.quantity);
+    }
+    for (const step of recipe.steps) {
+      await Step.upsert(recipe.id, recipeCreated.id, step.number, step.content);
+    }
+
+    console.log("RECIPE FROM DB", recipeCreated);
+    res.render("recipes/edit", {
+      title: "Recipe",
+      recipe: recipe,
     });
-  } catch (error) {
-    console.error('Login error:', error);
+    console.log("EDIT RECIPE END");
+  }
+  catch (error){
+    console.log("EDIT RECIPE ERROR");
+    console.error('Recipe edit error:', error);
     next(error);
   }
-};
+}
+
