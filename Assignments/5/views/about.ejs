@@ -1,35 +1,48 @@
 <%- include('./partials/header') %>
 
-<div class="container">
-  <div class="about-section">
-    <h1>About This Application</h1>
-    <p>This is a starter template for a web application with user authentication features. It demonstrates:</p>
-    
+<div class="container about-container">
+
+  <section class="about-hero">
+    <h1>About PlateMate</h1>
+    <p class="subtitle">
+      PlateMate is a simple and friendly recipe-sharing platform where home cooks, food lovers, and aspiring chefs 
+      can share their best dishes with the world.
+    </p>
+  </section>
+
+  <section class="about-content">
+    <h2>What You Can Do</h2>
     <ul>
-      <li>User registration and login</li>
-      <li>Session management with express-session</li>
-      <li>Password hashing with bcrypt</li>
-      <li>PostgreSQL database integration</li>
-      <li>CSRF protection</li>
-      <li>Form validation</li>
-      <li>Protected routes that require authentication</li>
-      <li>Profile image upload and storage</li>
+      <li><strong>Create Recipes:</strong> Share your favorite dishes with detailed ingredients and step-by-step instructions.</li>
+      <li><strong>Explore Recipes:</strong> Browse recipes posted by other users from around the world.</li>
+      <li><strong>View Individual Recipes:</strong> See full details of a recipe including ingredients, instructions, tags, and likes.</li>
+      <li><strong>Profile Page:</strong> View all recipes you’ve created in one place.</li>
     </ul>
-    
-    <p>This template is intended for educational purposes to help students understand authentication concepts in web applications.</p>
-  </div>
-  
-  <div class="tech-stack">
-    <h2>Technology Stack</h2>
+  </section>
+
+  <section class="tech-stack">
+    <h2>How PlateMate Works</h2>
+    <p>
+      PlateMate is built as a full-stack web application using modern web technologies and a clean MVC structure.
+      The project demonstrates real-world concepts such as authentication, routing, sessions, and database integration.
+    </p>
+
     <ul>
       <li><strong>Backend:</strong> Node.js, Express.js</li>
-      <li><strong>Database:</strong> PostgreSQL with pg driver</li>
-      <li><strong>Frontend:</strong> HTML, CSS, JavaScript (Vanilla)</li>
-      <li><strong>Template Engine:</strong> EJS</li>
-      <li><strong>Authentication:</strong> bcrypt, express-session</li>
-      <li><strong>Security:</strong> csurf for CSRF protection</li>
+      <li><strong>Frontend:</strong> HTML, CSS, and EJS Templates</li>
+      <li><strong>Database:</strong> PostgreSQL</li>
+      <li><strong>Authentication:</strong> Login, Register, Sessions</li>
+      <li><strong>Security:</strong> Password hashing, protected routes</li>
     </ul>
-  </div>
+  </section>
+
+  <section class="about-footer">
+    <p>
+      This application was built for the CSC317 course to demonstrate skills in full-stack development, 
+      user authentication, and dynamic content generation.
+    </p>
+  </section>
+
 </div>
 
 <%- include('./partials/footer') %>

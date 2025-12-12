@@ -33,10 +33,26 @@
     </div>
     
     <div class="profile-section">
-      <h3>Protected Content</h3>
-      <p>This page is only accessible to authenticated users. You're seeing this because you're logged in!</p>
-      <p>This is where your application would display user-specific content and functionality.</p>
+  <h3>My Recipes</h3>
+
+  <% if (userRecipes.length === 0) { %>
+    <p>You haven't posted any recipes yet.</p>
+    <a href="/recipes/new" class="btn">Create Your First Recipe</a>
+  <% } else { %>
+    <div class="recipe-grid">
+      <% userRecipes.forEach(recipe => { %>
+        <div class="recipe-card">
+          <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
+          <h4><%= recipe.title %></h4>
+          <p><%= recipe.description %></p>
+          <p class="likes">❤️ <%= recipe.likes %></p>
+          <a href="/recipes/<%= recipe.id %>" class="view-btn">View Recipe</a>
+        </div>
+      <% }) %>
     </div>
+  <% } %>
+</div>
+
   </div>
 </div>
 
