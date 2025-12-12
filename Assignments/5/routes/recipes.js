@@ -1,4 +1,5 @@
 const express = require('express');
+const recipeController = require("../controllers/recipeController");
 const router = express.Router();
 
 // Show the create recipe page
@@ -8,8 +9,12 @@ router.get('/new', (req, res) => {
   });
 });
 
+
+// GET /recipes/:id - User profile page
+router.get('/:id', recipeController.getRecipe);
+
 // Show a single recipe
-router.get('/:id', (req, res) => {
+/*router.get('/:id', (req, res) => {
   const recipe = {
     title: "Chicken Biryani",
     description:
@@ -53,6 +58,7 @@ router.get('/:id', (req, res) => {
     recipe
   });
 });
+ */
 
 // Export router (must be at bottom)
 module.exports = router;
