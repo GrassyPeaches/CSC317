@@ -1,5 +1,6 @@
 const express = require('express');
 const recipeController = require("../controllers/recipeController");
+const {isNotAuthenticated, isAuthenticated} = require("../middlewares/auth");
 const router = express.Router();
 
 // Show the create recipe page
@@ -15,6 +16,8 @@ router.get('/:id', recipeController.getRecipe);
 
 //GET /recipes/ - All recipes
 router.get('/', recipeController.getAllRecipes);
+
+router.post('/new', isAuthenticated, recipeController.postNewRecipe);
 
 // Show a single recipe
 /*router.get('/:id', (req, res) => {
