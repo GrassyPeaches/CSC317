@@ -913,3 +913,115 @@ textarea:focus {
   background: #1b5a8e;
 }
 
+.profile-section {
+  margin-top: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.profile-section h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.recipe-card {
+  background: #fafafa;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.recipe-card h4 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.recipe-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+.recipe-card .likes {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.view-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 14px;
+  background: #2774b8;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.about-hero h1 {
+  font-size: 2.5rem;
+  color: #2774b8;
+  margin-bottom: .5rem;
+  text-align: center;
+}
+
+.about-hero .subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.about-content, .tech-stack {
+  margin-bottom: 2rem;
+}
+
+.about-content h2,
+.tech-stack h2 {
+  color: #333;
+  font-size: 1.6rem;
+  margin-bottom: .8rem;
+}
+
+.about-content ul,
+.tech-stack ul {
+  background: #f7f9fc;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  list-style-type: none;
+}
+
+.about-content li,
+.tech-stack li {
+  margin-bottom: .5rem;
+  padding-left: 10px;
+  border-left: 3px solid #2774b8;
+}
+
+.about-footer p {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #666;
+}
+

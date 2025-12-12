@@ -27,6 +27,32 @@ router.get('/profile-image', userController.getProfileImage);
 // GET /user/profile-image/:userId - Get any user's profile image by ID
 router.get('/profile-image/:userId', userController.getUserProfileImage);
 
+router.get('/profile', (req, res) => {
+  const userRecipes = [
+    {
+      id: 1,
+      title: "Chicken Biryani",
+      description: "Aromatic basmati rice with spiced chicken.",
+      image: "/images/biryani.jpg",
+      likes: 22
+    },
+    {
+      id: 2,
+      title: "Chocolate Chip Cookies",
+      description: "Soft, chewy, and loaded with chocolate.",
+      image: "/images/cookies.jpg",
+      likes: 45
+    }
+  ];
+
+  res.render('user/profile', {
+    title: "My Profile",
+    user: req.session.user,
+    userRecipes
+  });
+});
+
+
 
 module.exports = router;
 
