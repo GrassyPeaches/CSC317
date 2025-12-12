@@ -17,7 +17,14 @@ router.get('/:id', recipeController.getRecipe);
 //GET /recipes/ - All recipes
 router.get('/', recipeController.getAllRecipes);
 
+//POST - Create a recipe
 router.post('/new', isAuthenticated, recipeController.postNewRecipe);
+
+//GET - Edit page for recipe
+router.get('/edit/:id', recipeController.getEditRecipe);
+
+//POST - Edit a recipe
+router.post('/edit/:id', isAuthenticated, recipeController.postEditRecipe);
 
 // Show a single recipe
 /*router.get('/:id', (req, res) => {
