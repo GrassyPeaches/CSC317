@@ -42,10 +42,8 @@
     <div class="recipe-grid">
       <% userRecipes.forEach(recipe => { %>
         <div class="recipe-card">
-          <img src="<%= recipe.image %>" alt="<%= recipe.title %>">
           <h4><%= recipe.title %></h4>
           <p><%= recipe.description %></p>
-          <p class="likes">❤️ <%= recipe.likes %></p>
           <a href="/recipes/<%= recipe.id %>" class="view-btn">View Recipe</a>
         </div>
       <% }) %>

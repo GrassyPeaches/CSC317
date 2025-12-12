@@ -5,6 +5,7 @@
 const express = require('express');
 const router = express.Router();
 const { isAuthenticated } = require('../middlewares/auth');
+const recipeController = require("../controllers/recipeController");
 
 // Controller imports
 const userController = require('../controllers/userController');
@@ -12,8 +13,11 @@ const userController = require('../controllers/userController');
 // All routes in this file require authentication
 router.use(isAuthenticated);
 
+//GET /recipes/ - User recipes
+//router.get('/myRecipes', recipeController.getUserRecipes);
+
 // GET /user/profile - User profile page
-router.get('/profile', userController.getProfile);
+router.get('/profile', recipeController.getUserRecipes);
 
 // GET /user/settings - User settings page
 router.get('/settings', userController.getSettings);

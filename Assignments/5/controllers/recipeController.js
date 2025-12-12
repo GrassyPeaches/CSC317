@@ -6,7 +6,6 @@ const { validationResult } = require("express-validator");
 const Recipe = require("../models/Recipe");
 const Ingredient = require("../models/Ingredient");
 const Step = require("../models/Step");
-const RecipeImage = require("../models/RecipeImage");
 /**
  * Display recipe page
  */
@@ -29,6 +28,27 @@ exports.getRecipe = async (req, res) => {
     recipe: recipe,
   });
 };
+
+/**
+ * Display all user recipes
+ */
+exports.getUserRecipes = async (req, res) => {
+  const user = { ...req.session.user };
+  user.hasProfileImage = user.hasProfileImage || false;
+
+  const userRecipes = await Recipe.findByUserId(user.id);
+  if (userRecipes == null) {
+    return res.status(404).render("/error");
+  }
+
+  console.log("My RECIPES", userRecipes);
+  res.render("user/profile", {
+    title: "My Recipes",
+    user: user,
+    userRecipes: userRecipes,
+  });
+};
+
 /**
  * Display all recipes
  */
