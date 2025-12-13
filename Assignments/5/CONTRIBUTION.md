@@ -28,9 +28,9 @@
     * Contributed to project documentation and endpoint descriptions.
     * Helped debug API issues using Postman.
 
-* Shreya
-    *
-    *
+* Shreya Rameshwar
+    *  Worked primarily on the front-end design and user experience for the Platemate project. My contributions included improving overall UI consistency, adding a custom error page to provide clearer feedback for users, and implementing the front-end interface for the Edit Recipe feature by extending the existing Add Recipe flow. These updates focused on usability and accessibility while integrating seamlessly with the existing project structure without altering backend logic.
+    
 
 ---
 
