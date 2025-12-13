@@ -5,7 +5,7 @@
 * [Syed Shah]  [924729660] [haider2shah]
 * [Graciela Ramirez] - [925009719] - [GrassyPeaches]
 * [Sydney Leake] - [922864992] - [sydneyl04]
-* [Shreya] - [923263208] - [shhray]
+* [Shreya Rameshwar] - [923263208] - [shhray]
 
 * Elected Submitter: [Graciela Ramirez, GrassyPeaches] 
 * Repository Link: https://github.com/GrassyPeaches/CSC317/tree/main/Assignments/5
@@ -29,7 +29,7 @@
     * Helped debug API issues using Postman.
 
 * Shreya
-    *
+    * Worked primarily on the front-end design and user experience for the Platemate project. My contributions included improving overall UI consistency, adding a custom error page to provide clearer feedback for users, and implementing the front-end interface for the Edit Recipe feature by extending the existing Add Recipe flow. These updates focused on usability and accessibility while integrating seamlessly with the existing project structure without altering backend logic.
     *
 
 ---

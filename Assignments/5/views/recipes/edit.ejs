@@ -1,47 +1,111 @@
 <%- include('../partials/header') %>
-<link rel="stylesheet" href="/css/style.css">
 
-<div class="recipe-container">
+<div class="form-container">
+  <h1>Edit Recipe</h1>
+  <p class="form-subtitle">Update your recipe details below</p>
 
-    <div class="recipe-header">
-        <h1 class="recipe-title"><%= recipe.title %></h1>
-        <p class="recipe-description"><%= recipe.description %></p>
+  <form action="/recipes/edit/<%= recipe.id %>" method="POST">
+
+    <input type="hidden" name="id" value="<%= recipe.id %>">
+
+    <div class="form-group">
+      <label for="title">Recipe Title</label>
+      <input type="text" id="title" name="title" value="<%= recipe.title %>" required>
     </div>
 
-    <div class="recipe-sections">
-        <div>
-            <h2 class="section-title">Ingredients</h2>
-            <ul class="recipe-list">
-                <% recipe.ingredients.forEach(item => { %>
-                    <li><%= item.name %> <%= item.unit %> <%= item.quantity%></li>
-                <% }) %>
-            </ul>
-        </div>
-
-        <div>
-            <h2 class="section-title">Instructions</h2>
-            <ul class="recipe-list">
-                <% recipe.steps.forEach(step => { %>
-                    <li><%= step.number %> <%= step.content %></li>
-                <% }) %>
-            </ul>
-        </div>
+    <div class="form-group">
+      <label for="description">Short Description</label>
+      <textarea id="description" name="description" rows="3" required><%= recipe.description %></textarea>
     </div>
 
-    <a href="#" onclick="deleteRecipe(<%= recipe.id %>)" class="view-btn">DELETE</a>
-    <a href="/recipes/new" onclick="getEditRecipe(<%= recipe.id %>)" class="view-btn">Edit</a>
-    <a href="/recipes" class="back-link">← Back to All Recipes</a>
+    <div class="form-group">
+      <label>Ingredients</label>
+
+      <div id="ingredients-list">
+        <% if (recipe.ingredients && recipe.ingredients.length) { %>
+          <% recipe.ingredients.forEach((item, idx) => { %>
+            <div class="ingredient-row">
+              <input type="text" name="ingredients[<%= idx %>][name]" placeholder="Ingredient name" value="<%= item.name %>" required>
+              <input type="text" name="ingredients[<%= idx %>][unit]" placeholder="Unit (cups, tsp, etc.)" value="<%= item.unit %>" required>
+              <input type="number" name="ingredients[<%= idx %>][quantity]" placeholder="Qty" step="0.01" value="<%= item.quantity %>" required>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="ingredient-row">
+            <input type="text" name="ingredients[0][name]" placeholder="Ingredient name" required>
+            <input type="text" name="ingredients[0][unit]" placeholder="Unit (cups, tsp, etc.)" required>
+            <input type="number" name="ingredients[0][quantity]" placeholder="Qty" step="0.01" required>
+          </div>
+        <% } %>
+      </div>
+
+      <button type="button" id="add-ingredient" class="btn small-btn">+ Add Ingredient</button>
+    </div>
+
+    <div class="form-group">
+      <label>Steps</label>
+
+      <div id="steps-list">
+        <% if (recipe.steps && recipe.steps.length) { %>
+          <% recipe.steps.forEach((step, idx) => { %>
+            <div class="step-row">
+              <textarea name="steps[<%= idx %>][content]" placeholder="Step description" required><%= step.content %></textarea>
+              <input type="hidden" name="steps[<%= idx %>][number]" value="<%= step.number %>">
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="step-row">
+            <textarea name="steps[0][content]" placeholder="Step description" required></textarea>
+            <input type="hidden" name="steps[0][number]" value="1">
+          </div>
+        <% } %>
+      </div>
+
+      <button type="button" id="add-step" class="btn small-btn">+ Add Step</button>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn primary-btn">Save Changes</button>
+      <a href="/recipes/<%= recipe.id %>" class="btn secondary-btn">Cancel</a>
+    </div>
+
+  </form>
 </div>
 
-<%- include('../partials/footer') %>
-
-
 <script>
-    function deleteRecipe(id) {
-        fetch(`/recipes/delete/${id}`, {
-            method: 'DELETE'
-        }).then(() => {
-            window.location.href = "/user/profile"
-        });
-    }
+  let ingredientIndex = <%= (recipe.ingredients && recipe.ingredients.length) ? recipe.ingredients.length : 1 %>;
+  let stepIndex = <%= (recipe.steps && recipe.steps.length) ? recipe.steps.length : 1 %>;
+
+  document.getElementById('add-ingredient').addEventListener('click', () => {
+    const container = document.getElementById('ingredients-list');
+
+    const row = document.createElement('div');
+    row.classList.add('ingredient-row');
+
+    row.innerHTML = `
+      <input type="text" name="ingredients[${ingredientIndex}][name]" placeholder="Ingredient name" required>
+      <input type="text" name="ingredients[${ingredientIndex}][unit]" placeholder="Unit" required>
+      <input type="number" name="ingredients[${ingredientIndex}][quantity]" placeholder="Qty" step="0.01" required>
+    `;
+
+    container.appendChild(row);
+    ingredientIndex++;
+  });
+
+  document.getElementById('add-step').addEventListener('click', () => {
+    const container = document.getElementById('steps-list');
+
+    const row = document.createElement('div');
+    row.classList.add('step-row');
+
+    row.innerHTML = `
+      <textarea name="steps[${stepIndex}][content]" placeholder="Step description" required></textarea>
+      <input type="hidden" name="steps[${stepIndex}][number]" value="${stepIndex + 1}">
+    `;
+
+    container.appendChild(row);
+    stepIndex++;
+  });
 </script>
+
+<%- include('../partials/footer') %>
