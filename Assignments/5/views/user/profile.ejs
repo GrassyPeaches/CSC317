@@ -46,6 +46,10 @@
           <h4><%= recipe.title %></h4>
           <p><%= recipe.description %></p>
           <a href="/recipes/<%= recipe.id %>" class="view-btn">View Recipe</a>
+          <form action="/recipes/<%= recipe.id %>/delete" method="POST" style="margin-top: 10px;">
+  <button type="submit" class="btn delete-btn">Delete</button>
+</form>
+
         </div>
       <% }) %>
     </div>

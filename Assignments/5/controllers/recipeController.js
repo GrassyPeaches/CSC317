@@ -70,82 +70,63 @@ exports.getAllRecipes = async (req, res) => {
  */
 exports.postNewRecipe = async (req, res, next) => {
   try {
-    console.log("NEW RECIPE");
-    const recipe = {};
-    console.log("BODY!")
-    console.log(req.body);
-
-    recipe.title = req.body.title;
-    recipe.description = req.body.description;
-
-    // ingredients and steps should be an array
-
-    recipe.ingredients = req.body.ingredients;
-    recipe.steps = req.body.steps;
-    console.log("RECIPE")
-    console.log(recipe);
-
-    if (typeof recipe.title !== 'string' || typeof recipe.description !== 'string') {
-      return res.status(400).render('recipes/new', {
-        title: 'Create Recipe',
-        errors: [{msg: 'Invalid title and description type'}],
-      });
-    }
-
-    if (!Array.isArray(recipe.ingredients) || !Array.isArray(recipe.steps)) {
-      return res.status(400).render('recipes/new', {
-        title: 'Create Recipe',
-        errors: [{msg: 'Invalid list'}],
-      });
-    }
-
-    for (const ingredient of recipe.ingredients) {
-      if (!ingredient && typeof ingredient !== "object" ||
-          typeof ingredient.name !== "string" ||
-          typeof ingredient.unit !== "string" ||
-          !Number.isInteger(ingredient.quantity)) {
-        return res.status(400).render('recipes/new', {
-          title: 'Create Recipe',
-          errors: [{msg: 'Invalid ingredient name, unit or description type'}],
-        });
-      }
-    }
-
-    for (const step of recipe.steps) {
-      if (!step && typeof step !== "object" ||
-          typeof step.content !== "string" ||
-          !Number.isInteger(step.number)) {
-        return res.status(400).render('recipes/new', {
-          title: 'Create Recipe',
-          errors: [{msg: 'Invalid step content or number type'}],
-        });
-      }
-    }
+    console.log("POST NEW RECIPE");
 
     const userId = req.session.user.id;
+    const { title, description, ingredients, steps } = req.body;
 
-    const recipeCreated = await Recipe.create(userId, recipe.title, recipe.description);
-
-    for (const ingredient of recipe.ingredients) {
-      await Ingredient.create(recipeCreated.id, ingredient.name, ingredient.unit, ingredient.quantity);
+    // 1️⃣ Validate basic types
+    if (typeof title !== 'string' || typeof description !== 'string') {
+      return res.status(400).render("recipes/new", {
+        errors: [{ msg: "Title and description must be text" }],
+      });
     }
-    for (const step of recipe.steps) {
-      await Step.create(recipeCreated.id, step.number, step.content);
+
+    // 2️⃣ Validate ingredients & steps are arrays
+    if (!Array.isArray(ingredients) || !Array.isArray(steps)) {
+      return res.status(400).render("recipes/new", {
+        errors: [{ msg: "Ingredients and steps must be lists" }],
+      });
     }
 
-    console.log("RECIPE FROM DB", recipeCreated);
-    res.render("recipes/show", {
-      title: "Recipe",
-      recipe: recipe,
-    });
-    console.log("NEW RECIPE END");
-  }
-  catch (error){
+    // 3️⃣ Create main recipe
+    const recipeCreated = await Recipe.create(userId, title, description);
+    console.log("Recipe Created:", recipeCreated);
+
+    // 4️⃣ Insert ingredients
+    for (const item of ingredients) {
+      await Ingredient.create(
+        recipeCreated.id,
+        item.name,
+        item.unit,
+        item.quantity
+      );
+    }
+
+    // 5️⃣ Insert steps
+    for (const step of steps) {
+      await Step.create(
+        recipeCreated.id,
+        step.number,
+        step.content
+      );
+    }
+
+    // 6️⃣ Fetch complete recipe for display
+    const fullRecipe = await Recipe.findById(recipeCreated.id);
+    fullRecipe.ingredients = await Ingredient.findByRecipeId(recipeCreated.id);
+    fullRecipe.steps = await Step.findByRecipeId(recipeCreated.id);
+
+    // 7️⃣ Redirect to the real recipe page
+    return res.redirect(`/recipes/${recipeCreated.id}`);
+
+  } catch (error) {
     console.log("NEW RECIPE ERROR");
-    console.error('Recipe new error:', error);
+    console.error(error);
     next(error);
   }
-}
+};
+
 
 /**
  * Edit recipe page
@@ -264,30 +245,32 @@ exports.postEditRecipe = async (req, res, next) => {
 }
 
 /**
+/**
  * Delete a recipe
  */
 exports.deleteRecipe = async (req, res) => {
+  try {
+    const user = { ...req.session.user };
 
-  const user = { ...req.session.user };
-  // user.hasProfileImage = user.hasProfileImage || false;
+    // 1. Find the recipe first
+    const recipe = await Recipe.findById(req.params.id);
 
-  const userRecipes = await Recipe.findByUserId(user.id);
-  if (userRecipes == null) {
-    return res.status(404).render("/error");
+    if (!recipe) {
+      return res.status(404).render("error");
+    }
+
+    // 2. SECURITY CHECK — Only allow deleting your own recipe
+    if (recipe.user_id !== user.id) {
+      return res.status(403).render("error");
+    }
+
+    // 3. Delete the recipe
+    await Recipe.deleteById(recipe.id);
+
+    // 4. Redirect so profile loads fresh updated recipes
+    return res.redirect("/user/profile");
+  } catch (error) {
+    console.error("Delete Error:", error);
+    return res.status(500).render("error");
   }
-  const recipe = await Recipe.findById(req.params.id);
-  if (recipe == null) {
-    return res.status(404).render("/error");
-  }
-
-  console.log(recipe);
-
-  await Recipe.deleteById(recipe.id);
-
-
-  res.render("user/profile", {
-    title: "My Recipes",
-    user: user,
-    userRecipes: userRecipes,
-  });
-}
+};

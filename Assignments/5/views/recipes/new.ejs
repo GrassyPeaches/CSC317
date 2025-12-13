@@ -6,24 +6,47 @@
 
   <form action="/recipes/new" method="POST">
 
+    <!-- TITLE -->
     <div class="form-group">
       <label for="title">Recipe Title</label>
       <input type="text" id="title" name="title" required>
     </div>
 
+    <!-- DESCRIPTION -->
     <div class="form-group">
       <label for="description">Short Description</label>
       <textarea id="description" name="description" rows="3" required></textarea>
     </div>
 
+    <!-- INGREDIENTS SECTION -->
     <div class="form-group">
-      <label for="ingredients">Ingredients</label>
-      <textarea id="ingredients" name="ingredients" rows="5" placeholder="One ingredient per line" required></textarea>
+      <label>Ingredients</label>
+
+      <div id="ingredients-list">
+
+        <div class="ingredient-row">
+          <input type="text" name="ingredients[0][name]" placeholder="Ingredient name" required>
+          <input type="text" name="ingredients[0][unit]" placeholder="Unit (cups, tsp, etc.)" required>
+          <input type="number" name="ingredients[0][quantity]" placeholder="Qty" step="0.01" required>
+        </div>
+
+      </div>
+
+      <button type="button" id="add-ingredient" class="btn small-btn">+ Add Ingredient</button>
     </div>
 
+    <!-- STEPS SECTION -->
     <div class="form-group">
-      <label for="steps">Steps</label>
-      <textarea id="steps" name="steps" rows="6" placeholder="Write step-by-step instructions" required></textarea>
+      <label>Steps</label>
+
+      <div id="steps-list">
+        <div class="step-row">
+          <textarea name="steps[0][content]" placeholder="Step description" required></textarea>
+          <input type="hidden" name="steps[0][number]" value="1">
+        </div>
+      </div>
+
+      <button type="button" id="add-step" class="btn small-btn">+ Add Step</button>
     </div>
 
     <div class="form-actions">
@@ -33,5 +56,42 @@
 
   </form>
 </div>
+
+<!-- JAVASCRIPT FOR DYNAMIC FIELDS -->
+<script>
+let ingredientIndex = 1;
+let stepIndex = 1;
+
+document.getElementById("add-ingredient").addEventListener("click", () => {
+  const container = document.getElementById("ingredients-list");
+
+  const row = document.createElement("div");
+  row.classList.add("ingredient-row");
+
+  row.innerHTML = `
+    <input type="text" name="ingredients[${ingredientIndex}][name]" placeholder="Ingredient name" required>
+    <input type="text" name="ingredients[${ingredientIndex}][unit]" placeholder="Unit" required>
+    <input type="number" name="ingredients[${ingredientIndex}][quantity]" placeholder="Qty" step="0.01" required>
+  `;
+
+  container.appendChild(row);
+  ingredientIndex++;
+});
+
+document.getElementById("add-step").addEventListener("click", () => {
+  const container = document.getElementById("steps-list");
+
+  const row = document.createElement("div");
+  row.classList.add("step-row");
+
+  row.innerHTML = `
+    <textarea name="steps[${stepIndex}][content]" placeholder="Step description" required></textarea>
+    <input type="hidden" name="steps[${stepIndex}][number]" value="${stepIndex + 1}">
+  `;
+
+  container.appendChild(row);
+  stepIndex++;
+});
+</script>
 
 <%- include('../partials/footer') %>
