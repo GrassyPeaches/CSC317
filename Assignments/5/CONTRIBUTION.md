@@ -14,8 +14,7 @@
 ## Member Contribution Breakdown
 
 **Syed Shah
--Designed UI components.
--Wrote front end code for profile page.
+My primary contributions focused on the frontend design and user experience of the project. I created the complete New Recipe page layout, including the input fields for title, description, ingredients, and steps. I developed the dynamic JavaScript functionality that allows users to add multiple ingredients (with name, unit, and quantity) and automatically numbered steps, making the form interactive and easy to use. I also refined the CSS styling to improve spacing, alignment, and visual consistency across the recipe pages. In addition, I added the Delete Recipe button to both the profile page recipe cards and the individual recipe view, ensuring the UI supports all required user actions. Lastly, I helped clean up the project structure, fixed UI issues after merges, and ensured that all frontend components worked smoothly together.
 
 **Graciela Ramirez
 -Wrote most of backened logic. 
