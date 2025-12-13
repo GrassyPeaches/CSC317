@@ -1,214 +1,220 @@
-# CSC317 Fall 2025: Group Web Application Project
+# PlateMate — A Full-Stack Recipe Sharing Platform
+
+CSC317 — Fall 2025 | Group Web Application Project
 
 ## Overview
 
-For this assignment, you will work in groups of 3-4 students to develop a complete web application using HTML, CSS, and JavaScript with Express.js for the backend and PostgreSQL for the database. This project will allow you to apply all the skills you've learned throughout the course in a collaborative setting.
+RecipeHub is a full-stack recipe sharing application built as part of the CSC317 course.
+The platform allows users to create, view, edit, and delete recipes while also managing their profiles through secure session-based authentication.
 
-## Starter Template
+The project emphasizes full-stack development, RESTful design, responsive UI, and collaborative software engineering practices.
 
-This repository is a starter template that includes:
-- User registration and login
-- Session-based authentication
-- Profile management with image upload
-- PostgreSQL database integration
-- Ready for deployment on Render.com
+## Features
+### User System
 
-Fork this repository to get started with your project!
+Forked user registration and login (session-based authentication)
 
-## Timeline and Deliverables
+Profile page with uploaded profile picture
 
-You have 4 weeks to complete this project with the following key deliverables:
+View personal recipes and manage them from the profile page
 
-1. **Week 1: Ideation and Proposal**
-   - Deliverable: README.md describing the project, features, and team responsibilities
+## Core Recipe Features
 
-2. **Week 2: Alpha Version**
-   - Deliverable: First functional prototype demonstrating core features
+### Create recipes with:
 
-3. **Week 3: Beta Version**
-   - Deliverable: Refined application with most features implemented
+Title
 
-4. **Week 4: Final Version (V1)**
-   - Deliverable: Complete, polished application ready for submission
+Description
 
-5. **Demo**
-   - Deliverable: 5-minute Zoom recording demonstrating your application
-   - Each team member must speak for at least 1 minute
+Automatically numbered step-by-step instructions
 
-## Project Requirements
+Dynamic ingredient fields (name, unit, quantity)
 
-Your web application must include:
+View individual recipe pages
 
-1. **Frontend**
-   - Responsive HTML/CSS layout
-   - Client-side form validation
-   - Interactive UI elements using JavaScript
-   - Consistent design system and typography
+View all recipes in a browsable feed
 
-2. **Backend (Express.js)**
-   - RESTful API endpoints
-   - PostgreSQL database for data persistence
-   - Error handling
-   - User authentication (provided in template)
+Edit or delete user-owned recipes
 
-3. **Full-Stack Features**
-   - CRUD operations
-   - Input validation (both client and server side)
-   - At least one complex feature unique to your project
+## Frontend & UI/UX
 
-4. **Deployment**
-   - Application deployed on Render.com
-   - PostgreSQL database hosted on Render.com
+Fully responsive HTML/CSS layout
 
-## Project Ideas
+Interactive dynamic forms using JavaScript
 
-Choose one of the following project ideas or propose your own (with instructor approval):
+Consistent color scheme, spacing, and typography
 
-1. **Recipe Sharing Platform**
+Clean page structure for readability and usability
 
-Entities: User, Recipe
-Minimal Features:
-Create recipe (title, description, instructions, ingredients)
-View all recipes
-View single recipe
-(Optional) Tag recipes, like recipes
+## Backend & Database
 
-2. **Task Management System**
+Express.js RESTful routes for recipe CRUD operations
 
-Entities: User, Task, (optional: Project/List)
-Minimal Features:
-Create task (title, status)
-View/edit/delete tasks
-(Optional) Assign to user, add due date
+PostgreSQL database with users, recipes, and ingredients tables
 
-3. **Twitter Clone**
+Secure data validation on both client and server
 
-Entities: User, Tweet/Post
-Minimal Features:
-Create post (text, timestamp)
-View feed
-(Optional) Like/retweet, reply
 
-4. **Local Event Finder**
+## Deployment
 
-Entities: User, Event
-Minimal Features:
-Create event (title, datetime, location)
-View all events
-(Optional) RSVP feature
+Backend and PostgreSQL hosted on Render.com
 
-5. **Fitness Tracker**
+Application prepared for production deployment
 
-Entities: User, Exercise/Entry
-Minimal Features:
-Log workout (type, duration, date)
-View log history
+## Tech Stack
+### Frontend
 
-6. **Book/Movie Review Site**
+HTML5
 
-Entities: User, Book/Movie, Review
-Minimal Features:
-Add book/movie
-Add review (rating, comment)
-View reviews
+CSS3
 
-7. **Budget Planner**
+JavaScript (Vanilla)
 
-Entities: User, Expense/Income
-Minimal Features:
-Add expense/income (amount, date, category)
-View summary/list
+EJS Templating
 
-8. **Digital Notebook/Wiki**
+### Backend
 
-Entities: User, Note/Page
-Minimal Features:
-Create/edit note (title, content)
-View notes
+Node.js + Express.js
 
-9. **Interactive Visualization Tool**
+Session-based authentication
 
-Entities: User, Dataset/Chart
-Minimal Features:
-Upload data or input directly
-Render a basic chart (bar/line)
+Bcrypt for password hashing
 
-Feel free to adapt these ideas or propose something entirely different that interests your team!
+### Database
+
+PostgreSQL
+
+pg-promise for database interaction
+
+## Tools & Workflow
+
+GitHub (Version Control, Pull Requests)
+
+Postman (API Testing)
+
+Zoom / Discord / WhatsApp (Team Collaboration)
 
 ## Directory Structure
-
-Your project must follow this directory structure:
-
 ```
-├── /
-    ├── app.js
-    ├── package.json
-    ├── public/
-    │   ├── css/
-    │   ├── js/
-    │   └── images/
-    ├── routes/
-    │   └── api/
-    ├── views/
-    ├── middlewares/
-    ├── models/
-    ├── config/
-    ├── scripts/
-    └── README.md
+├── app.js
+├── package.json
+├── public/
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── routes/
+│   └── api/
+├── views/
+├── middlewares/
+├── models/
+├── config/
+├── scripts/
+└── README.md
+└── CONTRIBUTION.md
 ```
 
-## Getting Started
+## Team Contribution Breakdown
+### Syed Shah
 
-1. **Fork this repository** on GitHub (click the "Fork" button in the top right)
-2. **Clone your fork** locally:
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/CSC317Project-F25.git
-   cd CSC317Project-F25
-   ```
-3. Follow the instructions in [SETUP.md](SETUP.md) to set up your development environment
-4. Start building your project features!
+Designed UI components
 
-## Grading Criteria
+Created front-end layout for profile pages
 
-Your project will be evaluated on:
+Designed styling consistency across the platform
 
-1. **Functionality (40%)**
-   - All features work as described
-   - No major bugs or errors
-   - Proper error handling
+### Graciela Ramirez
 
-2. **Code Quality (25%)**
-   - Well-structured and organized code
-   - Proper comments and documentation
-   - Follows best practices
+Implemented backend routing, controllers, and database logic
 
-3. **Design and User Experience (20%)**
-   - Visual appeal and consistency
-   - Intuitive navigation and interface
-   - Responsive design
+Designed PostgreSQL schemas and connected queries to EJS views
 
-4. **Presentation and Documentation (15%)**
-   - Clear and engaging demo
-   - Comprehensive README
-   - Equal contribution from all team members
+Contributed to documentation and testing, and troubleshooting via Postman
 
-## Important Notes
+Ensured API reliability and data flow accuracy
 
-- **Individual Contribution**: All team members must contribute code. Zero code contribution will result in no credit for that student.
-- **Version Control**: Use Git for collaboration and maintain a clear commit history.
-- **Progress Updates**: Weekly check-ins will be required to ensure steady progress.
-- **Technology Stack**: You may use additional libraries with instructor approval, but the core must be HTML, CSS, JavaScript, Express.js, and PostgreSQL.
+### Shreya
 
-## Submission Guidelines
+Built the Edit Recipe page layout 
 
-1. Push your code to GitHub under the specified directory structure
-2. Deploy your application to Render.com
-3. Submit your repository link and deployed URL through the class portal
-4. Upload your demo video to the designated platform
-5. Include a contribution.md file detailing each member's contributions
+Refined CSS for spacing, alignment, and visual consistency
 
-## Due Date
+Cleaned project structure and resolved UI merge conflicts
 
-**December 10th, 2025 11:59pm**
+## Testing Process
+Functional Testing
 
-Good luck with your projects! This is your opportunity to showcase all you've learned throughout the course while gaining valuable collaborative development experience.
+Verified all routes (GET/POST/PUT/DELETE) using Postman
+
+Tested form validation on both client and server sides
+
+Browser Testing
+
+Checked UI responsiveness on multiple screen sizes
+
+Database Testing
+
+Confirmed recipe creation, updating, and deletion in PostgreSQL
+
+Validated schema relationships between users, recipes, and ingredients
+
+Performed review before merging pull requests
+
+## Challenges & Solutions
+1. Dynamic Form Handling
+
+Challenge: Adding variable numbers of ingredients and steps
+Solution: Implemented JavaScript functions that:
+
+Add and remove ingredient rows
+
+Automatically number steps
+
+Validate input before submission
+
+2. Merge Conflicts in EJS Templates
+
+Challenge: Team members frequently edited shared pages
+Solution:
+
+Established page ownership during sprints
+
+Increased commit frequency
+
+Required reviews before merging
+
+3. Database Connectivity Issues
+
+Challenge: Environment variables differed across team machines
+Solution:
+
+Standardized .env structure
+
+Documented required database configuration
+
+Synced team settings through shared setup instructions
+
+## Deployment
+
+The application is deployed using:
+
+Render.com (Backend Hosting)
+
+Render PostgreSQL (Database)
+
+Deployment includes environment variable configuration, production build settings, and persistent database storage.
+
+## Final Notes
+
+PlateMate reflects the full-stack skills we developed throughout CSC317, demonstrating proficiency in:
+
+Web development
+
+Database design
+
+UI/UX implementation
+
+Team collaboration
+
+Version control and deployment practices
+
+This project showcases our practical experience in building real-world web applications from the ground up.
