@@ -14,12 +14,16 @@
 
 ## Member Contribution Breakdown
 
-* Syed Shah: 
-    * Designed UI components.
-    * Wrote front end code for profile page.
+* Syed Shah:
+    * Contributed to frontend design and overall user experience.
+    * Created the complete New Recipe page layout, including input fields for title, description, ingredients, and steps.
+    * Developed dynamic JavaScript functionality for adding multiple ingredients (name, unit, quantity) and automatically numbered steps. Refined CSS styling to improve spacing, alignment, and visual consistency across recipe-related pages.
+    * Added the Delete Recipe button to both profile page recipe cards and the individual recipe view.
+    * Improved project structure by organizing frontend files and cleaning up layout inconsistencies.
+    * Fixed UI issues that appeared after merges to ensure smooth interaction between all frontend components.
 
 * Graciela Ramirez
-    * Wrote most of the back-end logic, including routing, controllers, and database operations.
+    * Wrote most of the back-end logic, including building tables, routing, controllers, and database operations.
     * Set up PostgreSQL schemas and integrated queries with EJS templates. 
     * Contributed to project documentation and endpoint descriptions.
     * Helped debug API issues using Postman.
