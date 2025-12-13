@@ -29,6 +29,12 @@
   </div>
 
   <a href="/recipes" class="back-link">← Back to All Recipes</a>
+  <% if (isAuthenticated && user && recipe.user_id === user.id) { %>
+  <div class="form-actions" style="margin-top: 24px;">
+    <a href="/recipes/edit/<%= recipe.id %>" class="btn primary-btn">Edit Recipe</a>
+  </div>
+<% } %>
+
 </div>
 
 <%- include('../partials/footer') %>
